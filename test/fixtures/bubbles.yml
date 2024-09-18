@@ -11,7 +11,7 @@ two:
   title: Layout is broken
   body: The page scrolls horizontally on mobile devices.
   color: '#698F9C'
-  creator: :jz
+  creator: :david
 
 three:
   title: The text is too small

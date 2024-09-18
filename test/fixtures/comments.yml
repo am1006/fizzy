@@ -9,3 +9,8 @@ two:
   body: Same, let’s do it.
   creator: :kevin
   bubble: :one
+
+three:
+  body: The text is overflowing the container.
+  creator: :david
+  bubble: :two

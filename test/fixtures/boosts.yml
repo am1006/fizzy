@@ -4,18 +4,22 @@ one:
   body: ""
   creator: :jz
   bubble: one
+  created_at: <%= 3.seconds.from_now %>
 
 two:
   body: ""
-  creator: :kevin
+  creator: :jz
   bubble: two
+  created_at: <%= 3.seconds.from_now %>
 
 three:
   body: ""
   creator: :kevin
   bubble: one
+  created_at: <%= 3.seconds.from_now %>
 
 four:
   body: ""
   creator: :jz
   bubble: one
+  created_at: <%= 3.seconds.from_now %>
