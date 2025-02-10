@@ -4,12 +4,12 @@
     <span>Assign</span>
   </button>
 
-  <dialog class="combox-popup panel flex-column align-start gap-half fill-white shadow" style="--panel-border-radius: 1em;" data-dialog-target="dialog">
+  <dialog class="popup panel flex-column align-start gap-half fill-white shadow" style="--panel-border-radius: 1em;" data-dialog-target="dialog">
     <strong>Assign this to…</strong>
 
     <%= form_with url: bucket_bubble_assignment_toggles_path(bubble.bucket, bubble), class: "flex flex-column gap-half full-width", data: { controller: "form" } do |form| %>
       <% users.sort_by(&:name).each do |user| %>
-        <div class="btn full-width borderless justify-start overflow-ellipsis" style="--btn-border-radius: 0.3em;">
+        <div class="btn full-width borderless justify-start" style="--btn-border-radius: 0.3em;">
           <%= form.check_box "assignee_id[]", { 
             checked: bubble.assigned_to?(user),
             data: { action: "change->form#submit" },
@@ -17,7 +17,7 @@
             include_hidden: false,
           }, user.id %>
 
-          <%= form.label "assignee_id[]", user.name, for: dom_id(user, :assign) %>
+          <%= form.label "assignee_id[]", user.name, for: dom_id(user, :assign), class: "overflow-ellipsis" %>
         </div>
       <% end %>
     <% end %>

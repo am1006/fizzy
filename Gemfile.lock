@@ -1,15 +1,4 @@
 GIT
-  remote: https://github.com/josefarias/hotwire_combobox.git
-  revision: c280da0f4b61386729959a28f32fbed728a0c773
-  branch: main
-  specs:
-    hotwire_combobox (0.3.2)
-      platform_agent (>= 1.0.1)
-      rails (>= 7.0.7.2)
-      stimulus-rails (>= 1.2)
-      turbo-rails (>= 1.2)
-
-GIT
   remote: https://github.com/rails/rails.git
   revision: 5520bd835e3724ffafe3f719f9aafe951567f2f3
   branch: main
@@ -252,9 +241,6 @@ GEM
     parser (3.3.6.0)
       ast (~> 2.4.1)
       racc
-    platform_agent (1.0.1)
-      activesupport (>= 5.2.0)
-      useragent (~> 0.16.3)
     propshaft (1.1.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
@@ -428,7 +414,6 @@ DEPENDENCIES
   debug
   geared_pagination (~> 1.2)
   hotwire-spark
-  hotwire_combobox!
   importmap-rails
   jbuilder
   kamal

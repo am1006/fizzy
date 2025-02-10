@@ -46,10 +46,6 @@ class User < ApplicationRecord
     other != self
   end
 
-  def to_combobox_display
-    name
-  end
-
   private
     def deactived_email_address
       email_address.sub(/@/, "-deactivated-#{SecureRandom.uuid}@")

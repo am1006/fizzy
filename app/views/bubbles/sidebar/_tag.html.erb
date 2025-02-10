@@ -4,7 +4,7 @@
     <span>Tag</span>
   </button>
 
-  <dialog class="combox-popup panel flex-column align-start gap-half fill-white shadow" style="--panel-border-radius: 1em;" data-dialog-target="dialog">
+  <dialog class="popup panel flex-column align-start gap-half fill-white shadow" style="--panel-border-radius: 1em;" data-dialog-target="dialog">
     <strong>Tags this…</strong>
 
     <%= form_with url: bucket_bubble_tagging_toggles_path(bubble.bucket, bubble), class: "flex gap-half align-centerfull-width" do |form| %>
@@ -19,7 +19,7 @@
 
     <%= form_with url: bucket_bubble_tagging_toggles_path(bubble.bucket, bubble), class: "flex flex-column gap-half full-width", data: { controller: "form" } do |form| %>
       <% tags.sort_by(&:hashtag).each do |tag| %>
-        <div class="btn full-width borderless justify-start overflow-ellipsis" style="--btn-border-radius: 0.3em;">
+        <div class="btn full-width borderless justify-start" style="--btn-border-radius: 0.3em;">
           <%= form.check_box "tag_id[]", { 
             checked: bubble.tagged_with?(tag),
             data: { action: "change->form#submit" },
@@ -27,7 +27,7 @@
             include_hidden: false,
           }, tag.id %>
 
-          <%= form.label "tag_id[]", tag.hashtag, for: dom_id(tag, :tag) %>
+          <%= form.label "tag_id[]", tag.hashtag, for: dom_id(tag, :tag), class: "overflow-ellipsis" %>
         </div>
       <% end %>
     <% end %>

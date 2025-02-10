@@ -1,0 +1,14 @@
+.popup {
+  --panel-border-radius: 2em;
+  --panel-padding: 0.4em 1em;
+  --panel-size: auto;
+
+  inset: 0 auto auto 0;
+  max-inline-size: 30ch;
+  position: absolute;
+  z-index: 2;
+
+  &[open] {
+    display: flex;
+  }
+}

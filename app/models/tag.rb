@@ -9,8 +9,4 @@ class Tag < ApplicationRecord
   def hashtag
     "#" + title
   end
-
-  def to_combobox_display
-    title
-  end
 end
