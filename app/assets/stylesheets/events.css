@@ -69,10 +69,10 @@
 }
 
 .event__grid-column-title {
+  --z: 3;
+
   background-color: var(--color-bg);
-  inset-block-start: 0;
   padding-block: var(--grid-lines);
-  z-index: 3;
 }
 
 .event__timestamp {

@@ -157,7 +157,7 @@
 
 /* Position */
 .position-relative { position: relative; }
-.position-sticky { position: sticky; }
+.position-sticky { position: sticky; inset: var(--inset, 0 auto auto auto); z-index: var(--z, 1); }
 
 /* Fills */
 .fill { background-color: var(--color-bg); }
