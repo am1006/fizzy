@@ -5,11 +5,6 @@ class BucketsControllerTest < ActionDispatch::IntegrationTest
     sign_in_as :kevin
   end
 
-  test "index" do
-    get buckets_url
-    assert_response :success
-  end
-
   test "new" do
     get new_bucket_url
     assert_response :success
@@ -56,7 +51,7 @@ class BucketsControllerTest < ActionDispatch::IntegrationTest
   test "destroy" do
     assert_difference -> { Bucket.count }, -1 do
       delete bucket_url(buckets(:writebook))
-      assert_redirected_to buckets_url
+      assert_redirected_to root_url
     end
   end
 end

@@ -1,10 +1,5 @@
 class BucketsController < ApplicationController
-  before_action :set_bucket, except: %i[ index new create ]
-
-  def index
-    @filters = Current.user.filters.all
-    @buckets = Current.user.buckets.all
-  end
+  before_action :set_bucket, except: %i[ new create ]
 
   def new
     @bucket = Current.account.buckets.build
@@ -29,7 +24,7 @@ class BucketsController < ApplicationController
 
   def destroy
     @bucket.destroy
-    redirect_to buckets_path
+    redirect_to root_path
   end
 
   private
