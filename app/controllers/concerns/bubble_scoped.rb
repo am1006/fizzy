@@ -7,8 +7,7 @@ module BubbleScoped
 
   private
     def set_bubble
-      # Finding the bubble on the root depends on checking permission by finding its bucket via Current.user
-      @bubble = Bubble.find(params[:bubble_id])
+      @bubble = Current.user.accessible_bubbles.find(params[:bubble_id])
     end
 
     def set_bucket

@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :sessions, dependent: :destroy
   has_secure_password validations: false
 
+  has_many :comments, inverse_of: :creator, dependent: :destroy
+
   has_many :notifications, dependent: :destroy
 
   has_many :filters, foreign_key: :creator_id, inverse_of: :creator, dependent: :destroy

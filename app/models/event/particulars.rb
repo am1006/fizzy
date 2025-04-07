@@ -10,6 +10,6 @@ module Event::Particulars
   end
 
   def comment
-    @comment ||= Comment.find_by(id: comment_id)
+    @comment ||= account.comments.find_by(id: comment_id)
   end
 end

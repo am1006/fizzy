@@ -10,6 +10,8 @@ class Account < ApplicationRecord
     end
   end
 
+  has_many :comments, through: :users
+
   has_many :workflows, dependent: :destroy
   has_many :stages, through: :workflows, class_name: "Workflow::Stage"
 

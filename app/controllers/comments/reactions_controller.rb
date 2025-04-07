@@ -24,7 +24,7 @@ class Comments::ReactionsController < ApplicationController
 
   private
     def set_comment
-      @comment = Comment.find(params[:comment_id])
+      @comment = Current.account.comments.find(params[:comment_id])
     end
 
     def reaction_params
