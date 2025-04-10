@@ -23,7 +23,7 @@
     <%= link_to_home %>
     <%= link_to_back fallback_path: cards_path(collection_id: @card.collection) %>
 
-    <div class="card__actions-container card__actions-container--top center flex align-center gap border-radius" style="--card-color: <%= @card.color %>;">
+    <div class="card-container__cutout card-container__cutout--top" style="--card-color: <%= @card.color %>;">
       <strong class="txt-uppercase">Considering</strong>
       <% if @card.doing? %>
         <%= form_with url: card_engagement_path(@card), method: :delete, data: { controller: "form" }, class: "flex" do %>
@@ -51,16 +51,16 @@
 <% end %>
 
 <div data-controller="beacon" data-beacon-url-value="<%= card_reading_url(@card) %>">
-  <div class="card__container position-relative <%= "card__container--pointing" unless @card.published? %>" style="--card-color: <%= @card.color %>;">
+  <section class="card-container <%= "card-container--pointing" unless @card.published? %>" style="--card-color: <%= @card.color %>;">
+
     <%= render "cards/display/perma", card: @card %>
 
-    <div class="card__actions flex flex-column gap-half">
-      <button class="car__star-button btn">
+    <aside class="card-container__actions card-container__actions--left" role="toolbar">
+      <button class="btn">
         <%= icon_tag "star" %>
         <span class="for-screen-reader">Star this card</span>
-        <input type="checkbox" class="card__star-input">
+        <input type="checkbox" class="card-container__star-input">
       </button>
-
       <%= render "cards/color", card: @card %>
       <%= render "cards/image", card: @card %>
       <%= button_to collection_card_path(@card.collection, @card),
@@ -70,19 +70,18 @@
         <%= icon_tag "trash" %>
         <span class="for-screen-reader">Delete</span>
       <% end %>
-    </div>
-
+    </aside>
 
     <% if @card.published? %>
-      <div class="card__actions card__actions--right flex flex-column gap-half">
+      <aside class="card-container__actions card-container__actions--right" role="toolbar">
         <%= turbo_frame_tag dom_id(@card, :watch), src: card_watch_path(@card), refresh: :morph %>
         <%= turbo_frame_tag dom_id(@card, :pin), src: card_pin_path(@card), refresh: :morph %>
-      </div>
+      </aside>
     <% end %>
-  </div>
+  </section>
 
   <% unless @card.drafted? || @card.creating? %>
-    <div class="card__actions-wrapper">
+    <div>
       <%= render "cards/closure_toggle", card: @card %>
     </div>
   <% end %>

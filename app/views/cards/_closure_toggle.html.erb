@@ -1,6 +1,6 @@
-<div class="card__actions-container center border-radius flex-inline align-center justify-center gap" style="--card-color: <%= @card.color %>">
+<div class="card-container__cutout card-container__cutout--bottom" style="--card-color: <%= @card.color %>">
   <% if card.closed? %>
-    <span class="card__closure-message">Completed by <%= card.closed_by.name %> on <%= local_datetime_tag(card.closed_at, style: :shortdate) %>.</span>
+    <span class="card-container__closure-message">Completed by <%= card.closed_by.name %> on <%= local_datetime_tag(card.closed_at, style: :shortdate) %>.</span>
     <%= button_to card_closure_path(card), method: :delete, class: "btn btn--plain borderless fill-transparent" do %>
       <span>Un-do</span>
     <% end %>
@@ -19,7 +19,7 @@
       </div>
     </details>
 
-    <span class="card__closure-message">
+    <span class="card-container__closure-message">
       <% if card.doing? %>
         Returns to <em>Considering</em> if no activity <%= local_datetime_tag(card.auto_reconsider_at, style: :indays) -%>.
       <% else %>
