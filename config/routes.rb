@@ -8,8 +8,14 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :cards do
-    resources :previews
+  resources :collections do
+    scope module: :collections do
+      resource :subscriptions
+      resource :workflow, only: :update
+      resource :involvement
+    end
+
+    resources :cards
   end
 
   resources :cards do
@@ -35,6 +41,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :cards do
+    resources :previews
+  end
+
+
   resources :notifications, only: :index
   namespace :notifications do
     resource :tray, only: :show
@@ -49,15 +60,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :collections do
-    scope module: :collections do
-      resource :subscriptions
-      resource :workflow, only: :update
-      resource :involvement
-    end
-
-    resources :cards
-  end
+  resources :filters
 
   resources :events, only: :index
   namespace :events do
@@ -68,12 +71,15 @@ Rails.application.routes.draw do
     resources :stages, module: :workflows
   end
 
-  resources :filters
-  resources :qr_codes
+  resources :uploads, only: :create
+  get "/u/*slug" => "uploads#show", as: :upload
 
-  namespace :my do
-    resources :pins
-  end
+  resource :terminal, only: [ :show, :edit ]
+
+
+  resources :qr_codes
+  get "join/:join_code", to: "users#new", as: :join
+  post "join/:join_code", to: "users#create"
 
   resource :session do
     scope module: "sessions" do
@@ -87,8 +93,10 @@ Rails.application.routes.draw do
     end
   end
 
-  get "join/:join_code", to: "users#new", as: :join
-  post "join/:join_code", to: "users#create"
+  namespace :my do
+    resources :pins
+  end
+
 
   resolve "Card" do |card, options|
     route_for :collection_card, card.collection, card, options
@@ -99,13 +107,10 @@ Rails.application.routes.draw do
     route_for :collection_card, comment.card.collection, comment.card, options
   end
 
+
   get "up", to: "rails/health#show", as: :rails_health_check
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  resources :uploads, only: :create
-  get "/u/*slug" => "uploads#show", as: :upload
-
-  resource :terminal, only: [ :show, :edit ]
 
   root "events#index"
 end
