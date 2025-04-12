@@ -10,7 +10,7 @@ class Comment < ApplicationRecord
   # FIXME: Not a fan of this. Think all references to comment should come directly from the message.
   scope :belonging_to_card, ->(card) { joins(:message).where(messages: { card_id: card.id }) }
 
-  after_create_commit :watch_card_by_creator, :track_commenting_on_card
+  after_create_commit :watch_card_by_creator, :track_commented_card
   after_destroy_commit :cleanup_events
 
   def to_partial_path
@@ -22,7 +22,7 @@ class Comment < ApplicationRecord
       card.watch_by creator
     end
 
-    def track_commenting_on_card
+    def track_commented_card
       card.track_event :commented, comment_id: id
     end
 
