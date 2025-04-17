@@ -4,7 +4,7 @@
     accent-color: var(--input-accent-color, var(--color-ink));
     background-color: var(--input-background, transparent);
     border-radius: var(--input-border-radius, 0.5em);
-    border: var(--input-border-size, 1px) solid var(--input-border-color, var(--color-subtle-dark));
+    border: var(--input-border-size, 1px) solid var(--input-border-color, var(--color-ink-medium));
     color: var(--input-color, var(--color-ink));
     font-size: max(16px, 1em);
     inline-size: 100%;
@@ -148,7 +148,7 @@
   }
 
   .switch__btn {
-    background-color: var(--color-subtle-dark);
+    background-color: var(--color-ink-medium);
     border-radius: 2em;
     cursor: pointer;
     inset: 0;
@@ -168,7 +168,7 @@
     }
 
     .switch__input:disabled + & {
-      background-color: var(--color-subtle-dark) !important;
+      background-color: var(--color-ink-medium) !important;
       cursor: not-allowed;
     }
 

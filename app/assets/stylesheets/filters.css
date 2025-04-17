@@ -67,7 +67,7 @@
       block-size: 100%;
       border-block: 0;
       border-inline-end: 0;
-      border-inline-start: 1px solid var(--color-subtle);
+      border-inline-start: 1px solid var(--color-ink-lighter);
       content: "";
       display: inline-flex;
       inline-size: 0;

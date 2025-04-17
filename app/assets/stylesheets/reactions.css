@@ -1,7 +1,7 @@
 @layer components {
   .reactions {
     --column-gap: 0.4ch;
-    --reaction-border-color: var(--color-subtle);
+    --reaction-border-color: var(--color-ink-lighter);
     --row-gap: 0;
 
     margin-block-start: calc(var(--block-space-half) / 2);
@@ -30,7 +30,7 @@
 
     @media (any-hover: hover) {
       &:where(:not(:active):hover) {
-        --reaction-border-color: var(--color-subtle-dark);
+        --reaction-border-color: var(--color-ink-medium);
 
         box-shadow: 0 0 0 var(--hover-size) var(--hover-color);
       }
@@ -52,7 +52,7 @@
 
     @media (any-hover: hover) {
       &:where(:not(:active):hover) {
-        --reaction-border-color: var(--color-subtle-dark);
+        --reaction-border-color: var(--color-ink-medium);
       }
     }
   }

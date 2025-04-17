@@ -1,7 +1,7 @@
 @layer components {
   .panel {
     background-color: var(--color-canvas);
-    border: var(--panel-border-size, 1px) solid var(--panel-border-color, var(--color-subtle));
+    border: var(--panel-border-size, 1px) solid var(--panel-border-color, var(--color-ink-lighter));
     border-radius: var(--panel-border-radius, 1em);
     color: var(--color-ink);
     inline-size: var(--panel-size, 60ch);
@@ -9,7 +9,7 @@
     padding: var(--panel-padding, calc(var(--block-space) * 2));
 
     @media (prefers-color-scheme: dark) {
-      --panel-border-color: var(--color-subtle-dark);
+      --panel-border-color: var(--color-ink-medium);
     }
   }
 }

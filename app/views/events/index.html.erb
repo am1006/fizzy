@@ -19,7 +19,7 @@
 <div class="events__container align-start gap">
   <div class="txt-align-start">
     <h2 class="txt-normal txt-uppercase txt-nowrap">Custom views</h2>
-    <div style="border-block-start: 1px solid var(--color-subtle); padding-block-start: var(--block-space-half);">
+    <div style="border-block-start: 1px solid var(--color-ink-lighter); padding-block-start: var(--block-space-half);">
       <% @filters.each do |filter| %>
         <h3 class="txt-small margin-block-end-half txt-tight-lines">
           <%= link_to filter.summary, cards_path(**filter.as_params) %>
@@ -43,7 +43,7 @@
       <% end %>
     </div>
 
-    <div style="border-block-start: 1px solid var(--color-subtle); padding-block-start: var(--block-space-half);">
+    <div style="border-block-start: 1px solid var(--color-ink-lighter); padding-block-start: var(--block-space-half);">
       <% @collections.each do |collection| %>
         <h3 class="txt-small margin-block-end-half txt-tight-lines"><%= link_to collection.name, cards_path(collection_ids: [ collection ]) %></h3>
       <% end %>

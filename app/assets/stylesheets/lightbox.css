@@ -2,7 +2,7 @@
   .lightbox {
     --backdrop-speed: 150ms;
 
-    background-color: oklch(var(--lch-ink-inverted) / 0.66);
+    background-color: oklch(var(--lch-canvas) / 0.66);
     block-size: 100dvh;
     border: 0;
     inline-size: 100dvw;

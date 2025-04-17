@@ -46,11 +46,11 @@
     padding: var(--padding);
 
     @media (prefers-color-scheme: dark) {
-      --border-color: var(--color-subtle-dark);
+      --border-color: var(--color-ink-medium);
     }
 
     .notificiations-list--read & {
-      --border-color: var(--color-subtle);
+      --border-color: var(--color-ink-lighter);
 
       box-shadow: none !important;
     }
@@ -78,8 +78,8 @@
 
     @media (hover: hover) {
       &:hover {
-        --btn-background: var(--color-subtle-dark);
-        --btn-border-color: var(--color-subtle-dark);
+        --btn-background: var(--color-ink-medium);
+        --btn-border-color: var(--color-ink-medium);
 
         scale: 1;
 

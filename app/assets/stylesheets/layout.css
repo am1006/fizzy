@@ -53,7 +53,7 @@
         }
 
         a:not([class]) {
-          background-color: var(--color-subtle-light);
+          background-color: var(--color-ink-lightest);
           border-radius: 2em;
           color: var(--color-ink);
           font-weight: 500;
@@ -62,7 +62,7 @@
 
           @media (hover: hover) {
             &:hover {
-              background-color: var(--color-subtle);
+              background-color: var(--color-ink-lighter);
               text-decoration: none;
             }
           }

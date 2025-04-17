@@ -24,7 +24,7 @@
     }
 
     @media (prefers-color-scheme: dark) {
-      --border-color: var(--color-subtle-dark);
+      --border-color: var(--color-ink-medium);
     }
   }
 

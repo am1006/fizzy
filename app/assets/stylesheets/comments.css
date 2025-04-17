@@ -63,7 +63,7 @@
   }
 
   .comment__content {
-    background-color: var(--color-subtle-light);
+    background-color: var(--color-ink-lightest);
     border-radius: 0.2em;
     padding:
       var(--comment-padding-block)

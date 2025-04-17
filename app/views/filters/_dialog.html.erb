@@ -31,7 +31,7 @@
       <% end %>
     </div>
 
-    <%= form_with url: cards_path, id: :filter_form, method: :get, class: "flex flex-column gap full-width", style: "--border-color: var(--color-subtle)" do %>
+    <%= form_with url: cards_path, id: :filter_form, method: :get, class: "flex flex-column gap full-width", style: "--border-color: var(--color-ink-lighter)" do %>
       <% Array(params[:terms]).each do |term| %>
         <%= hidden_field_tag "terms[]", term, id: nil %>
       <% end %>

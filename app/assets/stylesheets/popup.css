@@ -17,7 +17,7 @@
   }
 
   .popup__item {
-    --btn-background: var(--color-subtle-light);
+    --btn-background: var(--color-ink-lightest);
     --btn-border-radius: 0.3em;
     --btn-border-size: 0;
     --btn-font-weight: 500;
@@ -29,7 +29,7 @@
 
     &::after {
       border-radius: var(--btn-border-radius);
-      border: var(--btn-border-size) solid var(--btn-border-color, var(--color-subtle));
+      border: var(--btn-border-size) solid var(--btn-border-color, var(--color-ink-lighter));
       content: "";
       display: block;
       inline-size: calc(100% - var(--btn-padding) * 2);

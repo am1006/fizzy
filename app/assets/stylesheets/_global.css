@@ -20,7 +20,7 @@
   --text-xx-large: 2.5rem;
 
   /* Borders */
-  --border: 1px solid var(--color-subtle);
+  --border: 1px solid var(--color-ink-lighter);
 
   /* Shadows */
   --shadow: 0 0 0 1px oklch(var(--lch-black) / 0.02),
@@ -127,27 +127,28 @@
   --lch-pink-lighter: 92% 0.03 338;
   --lch-pink-lightest: 96% 0.02 336;
 
-
-
-
-  /* Color abstractions */
+  /* Named colors */
   --color-black: oklch(var(--lch-black));
   --color-white: oklch(var(--lch-white));
 
-  --color-canvas: oklch(var(--lch-white));
-
-  --color-ink: oklch(var(--lch-ink));
+  --color-ink: oklch(var(--lch-ink-darkest));
+  --color-ink-darkest: oklch(var(--lch-ink-darkest));
+  --color-ink-darker: oklch(var(--lch-ink-darker));
+  --color-ink-dark: oklch(var(--lch-ink-dark));
+  --color-ink-medium: oklch(var(--lch-ink-medium));
+  --color-ink-light: oklch(var(--lch-ink-light));
+  --color-ink-lighter: oklch(var(--lch-ink-lighter));
+  --color-ink-lightest: oklch(var(--lch-ink-lightest));
 
   --color-ink-inverted: oklch(var(--lch-ink-inverted));
 
+  /* Color abstractions */
+  --color-canvas: oklch(var(--lch-white));
+
   --color-negative: oklch(var(--lch-red-dark));
-  --color-positive: oklch(var(--lch-green-medium));
-  --color-positive-light: oklch(var(--lch-green-lightest));
+  --color-positive: oklch(var(--lch-green-dark));
 
   --color-link: oklch(var(--lch-blue-dark));
-  --color-subtle-light: oklch(var(--lch-ink-lightest));
-  --color-subtle: oklch(var(--lch-ink-lighter));
-  --color-subtle-dark: oklch(var(--lch-ink-medium));
   --color-selected: oklch(var(--lch-blue-lighter));
   --color-selected-dark: oklch(var(--lch-blue-light));
   --color-highlight: oklch(var(--lch-yellow-lighter));

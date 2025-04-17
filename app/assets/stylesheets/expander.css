@@ -107,6 +107,6 @@
 
   &:hover,
   &:focus-visible {
-    background-color: oklch(var(--lch-ink-inverted) / 15%);
+    background-color: oklch(var(--lch-canvas) / 15%);
   }
 }

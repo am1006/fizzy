@@ -16,7 +16,7 @@
   .txt-ink { color: var(--color-ink); }
   .txt-reversed { color: var(--color-ink-inverted); }
   .txt-negative { color: var(--color-negative); }
-  .txt-subtle { color: var(--color-subtle-dark); }
+  .txt-subtle { color: var(--color-ink-medium); }
   .txt-alert { color: var(--color-marker); }
   .txt-undecorated { text-decoration: none; }
   .txt-tight-lines { line-height: 1.2; }
@@ -149,7 +149,7 @@
   .fill { background-color: var(--color-canvas); }
   .fill-black { background-color: var(--color-ink); }
   .fill-white { background-color: var(--color-ink-inverted); }
-  .fill-shade { background-color: var(--color-subtle-light); }
+  .fill-shade { background-color: var(--color-ink-lightest); }
   .fill-selected { background-color: var(--color-selected); }
   .fill-highlight { background-color: var(--color-highlight); }
   .fill-transparent { background-color: transparent; }
@@ -157,10 +157,10 @@
   .translucent { opacity: var(--opacity, 0.66); }
 
   /* Borders */
-  .border { border: var(--border-size, 1px) var(--border-style, solid) var(--border-color, var(--color-subtle)); }
-  .border-block { border-block: var(--border-size, 1px) var(--border-style, solid) var(--border-color, var(--color-subtle)); }
-  .border-bottom { border-block-end: var(--border-size, 1px) var(--border-style, solid) var(--border-color, var(--color-subtle)); }
-  .border-top { border-block-start: var(--border-size, 1px) var(--border-style, solid) var(--border-color, var(--color-subtle)); }
+  .border { border: var(--border-size, 1px) var(--border-style, solid) var(--border-color, var(--color-ink-lighter)); }
+  .border-block { border-block: var(--border-size, 1px) var(--border-style, solid) var(--border-color, var(--color-ink-lighter)); }
+  .border-bottom { border-block-end: var(--border-size, 1px) var(--border-style, solid) var(--border-color, var(--color-ink-lighter)); }
+  .border-top { border-block-start: var(--border-size, 1px) var(--border-style, solid) var(--border-color, var(--color-ink-lighter)); }
   .borderless { border: 0; }
 
   /* Border radius */

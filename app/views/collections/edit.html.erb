@@ -35,7 +35,7 @@
             <div class="overflow-ellipsis fill-shade"><strong>Everyone</strong></div>
           </div>
 
-          <hr class="separator--horizontal flex-item-grow" style="--border-color: var(--color-subtle-dark); --border-style: dashed" aria-hidden="true" />
+          <hr class="separator--horizontal flex-item-grow" style="--border-color: var(--color-ink-medium); --border-style: dashed" aria-hidden="true" />
 
           <label for="collection_all_access" class="switch">
             <%= form.check_box :all_access, class: "switch__input", checked: @collection.all_access?, data: { action: "change->toggle-class#toggle" } %>
@@ -44,7 +44,7 @@
           </label>
         </li>
 
-        <hr class="separator--horizontal full-width" style="--border-color: var(--color-subtle-dark);" aria-hidden="true" />
+        <hr class="separator--horizontal full-width" style="--border-color: var(--color-ink-medium);" aria-hidden="true" />
 
         <% if User.active.count > 20 %>
           <input placeholder="Filter…" class="input input--transparent full-width" type="search" autocorrect="off" autocomplete="off" data-1p-ignore="true" data-action="input->filter#filter">

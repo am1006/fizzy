@@ -10,7 +10,7 @@
   }
 
   .card-columns {
-    border-block-start: 1px solid var(--color-subtle);
+    border-block-start: 1px solid var(--color-ink-lighter);
     display: grid;
     grid-template-columns: repeat(2, 50%);
     margin: auto;
@@ -78,11 +78,11 @@
       --text-small: 1.1em;
 
       background-color: var(--color-canvas);
-      box-shadow: 0 0 0 1px var(--color-subtle);
+      box-shadow: 0 0 0 1px var(--color-ink-lighter);
       line-height: 1.2;
 
       @media (prefers-color-scheme: dark) {
-        box-shadow: 0 0 0 1px var(--color-subtle-dark);
+        box-shadow: 0 0 0 1px var(--color-ink-medium);
       }
 
       .avatar {
@@ -92,7 +92,7 @@
     }
 
     .card--drafted {
-      --card-color: var(--color-subtle-dark) !important;
+      --card-color: var(--color-ink-medium) !important;
 
       border-color: var(--card-color) !important;
       border-style: dashed !important;
@@ -124,7 +124,7 @@
   /* -------------------------------------------------------------------------- */
 
   .cards--closed {
-    border-block-start: 1px solid var(--color-subtle);
+    border-block-start: 1px solid var(--color-ink-lighter);
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;

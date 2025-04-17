@@ -11,7 +11,7 @@
     --font-sans: system-ui;
     --font-serif: ui-serif, serif;
     --font-mono: ui-monospace, monospace;
-    --hover-color: var(--color-subtle-dark);
+    --hover-color: var(--color-ink-medium);
     --hover-size: 0.15rem;
     --hover-filter: brightness(1);
 
