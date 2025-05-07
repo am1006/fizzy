@@ -1,5 +1,6 @@
 <%= tag.div class: "terminal full-width flex flex-column gap justify-end", data: {
-      controller: "toggle-class",
+      controller: "toggle-class terminal",
+      terminal_error_class: "terminal--error",
       toggle_class_toggle_class: "terminal--open" } do %>
   <%= turbo_frame_tag :recent_commands, src: commands_path, refresh: "morph" %>
 

@@ -2,9 +2,8 @@
       id: "commands_form",
       class: [ "flex align-center gap-half" ],
       data: {
-        controller: "form commands",
-        commands_error_class: "has-error",
-        action: "turbo:submit-end->commands#focus keydown.meta+k@document->commands#focus turbo:submit-end->commands#handleSubmit"
+        controller: "form",
+        action: "turbo:submit-end->terminal#focus keydown.meta+k@document->terminal#focus turbo:submit-end->terminal#handleSubmit"
       } do %>
   <label class="terminal__label txt-nowrap" for="fizzy_do">Fizzy do &gt;</label>
 
@@ -14,7 +13,7 @@
         autocapitalize: "off",
         class: "terminal__input input fill-transparent unpad",
         data: {
-          commands_target: "input",
+          terminal_target: "input",
           action: "keydown.up->toggle-class#add:prevent keydown.down->toggle-class#remove:prevent",
           turbo_permanent: true
         },

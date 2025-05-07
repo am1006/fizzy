@@ -74,7 +74,7 @@
     }
   }
 
-  .has-error .terminal__input {
+  .terminal--error .terminal__input {
     outline: 2px solid var(--color-negative);
     outline-offset: 2px;
   }
