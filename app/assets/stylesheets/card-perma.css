@@ -40,6 +40,22 @@
     .card__stages {
       max-inline-size: 32ch;
     }
+
+    @media (max-width: 800px) {
+      --padding-inline: 3cqmin;
+
+      column-gap: 0;
+      grid-template-areas:
+        "notch-top notch-top"
+        "card card"
+        "actions-left actions-right"
+        "notch-bottom notch-bottom";
+      grid-template-columns: 1fr 1fr;
+      inline-size: calc(100% + 2 * var(--padding-inline));
+      margin-inline: calc(-1 * var(--padding-inline));
+      max-inline-size: none;
+      position: relative;
+    }
   }
 
   /* Children
@@ -65,6 +81,21 @@
   .card-perma__actions--left { grid-area: actions-left; }
   .card-perma__actions--right { grid-area: actions-right; }
 
+  @media (max-width: 800px) {
+    .card-perma__actions {
+      display: flex;
+      inset-block-end: 0;
+      padding-inline: var(--padding-inline);
+      position: absolute;
+      translate: 0 50%;
+    }
+
+    .card-perma__actions--right {
+      inset-inline-end: 0;
+      justify-content: flex-end;
+    }
+  }
+
   /* Notches
   /* -------------------------------------------------------------------------- */
 
@@ -83,8 +114,10 @@
 
   .card-perma__notch--top {
     grid-area: notch-top;
+    inline-size: 100%;
     inset-inline-start: 50%;
-    min-inline-size: 36ch;
+    max-inline-size: 36ch;
+    padding-inline: 1ch;
     position: absolute;
     translate: -50% -50%;
 
