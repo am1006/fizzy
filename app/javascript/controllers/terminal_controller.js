@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import { HttpStatus } from "helpers/http_helpers"
+import { isMultiLineString } from "helpers/text_helpers";
 import { marked } from "marked"
 
 export default class extends Controller {
@@ -127,7 +128,7 @@ export default class extends Controller {
     const { confirmation, message, redirect_to } = responseJson
 
     if (message) {
-      this.#showOutput(marked.parse(message))
+      this.#showOutput(message)
     }
 
     if (confirmation) {
@@ -141,8 +142,17 @@ export default class extends Controller {
 
   async #requestConfirmation(confirmationPrompt) {
     this.element.classList.add(this.confirmationClass)
-    this.inputTarget.value = `${confirmationPrompt}? [Y/n] `
+    this.#showConfirmationPrompt(confirmationPrompt)
     this.waitingForConfirmationValue = true
+  }
+
+  #showConfirmationPrompt(confirmationPrompt) {
+    if (isMultiLineString(confirmationPrompt)) {
+      this.#showOutput(confirmationPrompt)
+      this.inputTarget.value = `Do you confirm? [Y/n] `
+    } else {
+      this.inputTarget.value = `${confirmationPrompt}? [Y/n] `
+    }
   }
 
   #handleConfirmationKey(key) {
@@ -162,9 +172,9 @@ export default class extends Controller {
     this.#reset()
   }
 
-  #showOutput(html) {
+  #showOutput(markdown) {
+    const html = marked.parse(markdown)
     this.element.classList.add(this.outputClass)
-    console.debug("PUT ON ", this.outputTarget);
     this.outputTarget.innerHTML = html
   }
 
