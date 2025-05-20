@@ -31,7 +31,7 @@ class CommandsControllerTest < ActionDispatch::IntegrationTest
     assert_response :conflict
 
     json = JSON.parse(response.body)
-    assert_equal "Assign Kevin to 3 cards", json["confirmation"]
+    assert_equal "Assign 3 cards to Kevin", json["confirmation"]
     assert_nil json["redirect_to"]
   end
 
