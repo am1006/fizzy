@@ -10,7 +10,7 @@ module Card::Entropy
     scope :stagnated,        -> { doing.where(last_active_at: ..AUTO_RECONSIDER_PERIOD.ago) }
     scope :due_to_be_closed, -> { considering.in_auto_closing_collection.where("last_active_at <= DATETIME('now', '-' || auto_close_period || ' seconds')") }
 
-    delegate :auto_closing?, :auto_close_period, to: :collection
+    delegate :auto_close_period, to: :collection
   end
 
   class_methods do
