@@ -74,6 +74,14 @@ class Command::Ai::TranslatorTest < ActionDispatch::IntegrationTest
     assert_command({ commands: [ "/tag #design" ] }, "tag with #design")
   end
 
+  test "move cards between considering and doing" do
+    assert_command({ commands: [ "/consider" ] }, "consider")
+    assert_command({ commands: [ "/consider" ] }, "move to consider")
+
+    assert_command({ commands: [ "/do" ] }, "doing")
+    assert_command({ commands: [ "/do" ] }, "move to doing")
+  end
+
   test "combine commands and filters" do
     assert_command({ context: { assignee_ids: [ "jz" ], tag_ids: [ "design" ] }, commands: [ "/assign andy", "/tag #v2" ] }, "assign andy to the current #design cards assigned to jz and tag them with #v2")
     assert_command({ context: { assignee_ids: [ "andy" ] }, commands: [ "/close", "/assign kevin" ] }, "close cards assigned to andy and assign them to kevin")
