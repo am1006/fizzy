@@ -26,7 +26,7 @@
         <% end %>
 
         <%= link_to cards_path(filter.as_params.except(:creator_ids).merge(expand_all: @expand_all)), class: "btn popup__item" do %>
-          <span class="overflow-ellipsis">Clear all</span>
+          <span class="overflow-ellipsis">Deselect all</span>
         <% end %>
 
         <div class="btn popup__item">
