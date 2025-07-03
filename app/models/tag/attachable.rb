@@ -3,9 +3,9 @@ module Tag::Attachable
 
   included do
     include ActionText::Attachable
-  end
 
-  def attachable_plain_text_representation(...)
-    "##{title}"
+    def attachable_plain_text_representation(...)
+      "##{title}"
+    end
   end
 end
