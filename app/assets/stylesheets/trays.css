@@ -65,11 +65,11 @@
 
   .tray__toggle {
     align-self: stretch;
-    background: none;
     background: oklch(var(--lch-yellow-medium) / 50%);
     border: 0;
     display: block;
     padding: 0;
+    transition: opacity 100ms ease-out;
     z-index: calc(var(--z-tray) + 1);
 
     .icon {
@@ -106,7 +106,16 @@
         position: absolute;
       }
     }
+
+    /* On desktop… */
+    @media (min-width: 800px) {
+      /* Hide the UI when collapsed, but only if there are items */
+      .tray__dialog:not([open]):has(.tray__item:not(.tray__item--overflow)) ~ & {
+        opacity: 0;
+      }
+    }
   }
+
 
   .tray__toggle-btn {
     --btn-background: transparent;
@@ -115,21 +124,13 @@
     border-radius: 1ch;
     inline-size: 100%;
 
-    /* On desktop… */
-    @media (min-width: 800px) {
-      /* Hide the UI when collapsed, but only if there are Pins */
-      .tray__dialog:has(.tray__item:not(.tray__item--overflow)) {
-        opacity: 0;
-      }
-    }
-
-    .tray__dialog[open] ~ .tray__toggle & {
+    /* .tray__dialog[open] ~ .tray__toggle & {
       opacity: 0.66;
 
       &:hover {
         opacity: 1;
       }
-    }
+    } */
   }
 
   /* Actions
@@ -403,22 +404,22 @@
       display: none;
     }
 
-    /* On mobile… */
+    /* Disable the expander if there aren't items to show */
+    .tray__dialog:not(:has(.tray__item)) ~ .tray__toggle {
+      opacity: 0.5;
+
+      &, .tray__toggle-btn {
+        pointer-events: none;
+      }
+    }
+
+    /* Add a border on mobile */
     @media (max-width: 799px) {
-      /* …add a border */
       .tray__toggle {
         border-inline-end: 1px dashed oklch(var(--lch-white) / 50%);
         translate: calc(-1 * var(--tray-margin)) 0;
       }
 
-      /* …and disable the expander if there aren't items to show */
-      .tray__dialog:not(:has(.tray__item:not(.tray__item--overflow))) ~ .tray__toggle {
-        pointer-events: none;
-
-        .icon {
-          opacity: 0.5;
-        }
-      }
     }
   }
 
