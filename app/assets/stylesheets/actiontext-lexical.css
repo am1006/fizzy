@@ -18,8 +18,11 @@
       }
     }
 
+    /* Lexical still uses the `lexical-editor--empty` class if you have a list
+       started with no other characters. Here, we won't show the placeholder if
+       you've clicked the List button in the toolbar. */
     &.lexical-editor--empty {
-      .lexical-editor__content::before {
+      .lexical-editor__content:not(:has(ul, ol))::before {
         content: attr(placeholder);
         color: currentColor;
         cursor: text;
