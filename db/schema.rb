@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_07_03_193928) do
+ActiveRecord::Schema[8.1].define(version: 2025_07_22_132226) do
   create_table "accesses", force: :cascade do |t|
     t.datetime "accessed_at"
     t.integer "collection_id", null: false
@@ -223,6 +223,14 @@ ActiveRecord::Schema[8.1].define(version: 2025_07_03_193928) do
     t.index ["container_type", "container_id", "auto_close_period"], name: "idx_on_container_type_container_id_auto_close_perio_74dc880875"
     t.index ["container_type", "container_id", "auto_reconsider_period"], name: "idx_on_container_type_container_id_auto_reconsider__583aaddbea"
     t.index ["container_type", "container_id"], name: "index_entropy_configurations_on_container", unique: true
+  end
+
+  create_table "event_activity_summaries", force: :cascade do |t|
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.string "key", null: false
+    t.datetime "updated_at", null: false
+    t.index ["key"], name: "index_event_activity_summaries_on_key", unique: true
   end
 
   create_table "events", force: :cascade do |t|

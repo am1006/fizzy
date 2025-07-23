@@ -5,6 +5,8 @@
       <%= local_datetime_tag day_timeline.day, style: :agoorweekday, class: "txt-reversed" %>
     </h2>
 
+    <%= render "events/day_timeline/summary", day_timeline: day_timeline if day_timeline.summarizable?%>
+
     <div class="events__columns">
       <%= render "events/day_timeline_column", event_type: "added", day_timeline: day_timeline %>
       <%= render "events/day_timeline_column", event_type: "updated", day_timeline: day_timeline %>

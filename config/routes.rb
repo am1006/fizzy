@@ -72,6 +72,7 @@ Rails.application.routes.draw do
 
   resources :events, only: :index
   namespace :events do
+    resources :activity_summaries
     resources :days
   end
 
@@ -137,6 +138,10 @@ Rails.application.routes.draw do
 
       resources :cards, only: :show
     end
+  end
+
+  namespace :admin do
+    resource :prompt_sandbox
   end
 
   direct :published_collection do |collection, options|

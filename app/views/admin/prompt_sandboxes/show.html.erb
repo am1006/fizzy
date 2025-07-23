@@ -1,0 +1,43 @@
+<div style="text-align: left;">
+  <h1>Prompt Debug</h1>
+
+  <%= form_with url: admin_prompt_sandbox_path, method: :post do |form| %>
+    <div class="field">
+      <%= form.label :prompt, "Prompt:" %>
+      <%= form.text_area :prompt, value: @prompt, rows: 20, cols: 80, style: "width: 100%; font-family: monospace;" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :day, "Date:" %>
+      <%= form.date_field :day, value: @day_timeline.day.to_date %>
+    </div>
+
+    <div class="field">
+      <%= form.label :llm_model, "LLM Model:" %>
+      <%= form.select :llm_model,
+            options_for_select(llm_model_options, @llm_model),
+            {} %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Generate Summary", class: "btn btn-primary" %>
+    </div>
+
+  <% end %>
+
+  <div class="summary" style="margin-top: 2rem; padding: 1rem; border: 1px solid #ddd; background-color: #f9f9f9;">
+    <h2>Summary</h2>
+    <div class="summary-content">
+      <%= @activity_summary&.to_html %>
+    </div>
+  </div>
+
+  <div class="summary" style="margin-top: 2rem; padding: 1rem; border: 1px solid #ddd; background-color: #f9f9f9;">
+    <h2>Summarized Contents</h2>
+    <div class="summary-content">
+    <pre>
+<%= @day_timeline.summarizable_content %>
+    </pre>
+    </div>
+  </div>
+</div>

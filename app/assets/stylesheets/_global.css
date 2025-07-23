@@ -200,6 +200,11 @@
   --color-code-token__selector: oklch(var(--lch-green-dark));
   --color-code-token__variable: oklch(var(--lch-red-dark));
 
+  /* Colors: Generating gradient */
+  --color-gradient-1: oklch(var(--lch-violet-lighter));
+  --color-gradient-2: oklch(var(--lch-pink-lighter));
+  --color-gradient-3: oklch(var(--lch-purple-lighter));
+  --color-gradient-4: oklch(var(--lch-blue-lighter));
 
   @media (prefers-color-scheme: dark) {
     --lch-canvas: 20% 0.0195 232.58;
