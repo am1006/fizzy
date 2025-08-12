@@ -68,7 +68,7 @@ class Ai::Tool::ListComments < Ai::Tool
 
   def execute(**params)
     cards = Card.where(collection: user.collections)
-    scope = Comment.where(card: cards).includes(:card, :creator, reactions: [ :reacter ])
+    scope = Comment.where(card: cards).with_rich_text_description.includes(:card, :creator, reactions: [ :reacter ])
 
     scope = scope.search(params[:query]) if params[:query].present?
     scope = scope.where(card_id: params[:card_id].to_i) if params[:card_id].present?

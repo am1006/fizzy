@@ -32,39 +32,39 @@ class Ai::Tool::ListCards < Ai::Tool
       - name [String, not null]
   MD
 
-  param :ids,
+  param :page,
     type: :string,
-    desc: "If provided, will return only the cards with the given IDs (comma-separated)",
+    desc: "Which page to return. Leave balnk to get the first page",
     required: false
   param :query,
     type: :string,
     desc: "If provided, will perform a semantinc search by embeddings and return only matching cards",
     required: false
-  param :page,
+  param :ids,
     type: :string,
-    desc: "Which page to return. Leave balnk to get the first page",
+    desc: "If provided, will return only cards with the given IDs (comma-separated)",
     required: false
-  param :collection_id,
+  param :collection_ids,
     type: :integer,
-    desc: "If provided, will return only cards for the specified collection",
+    desc: "If provided, will return only cards for the specified collections (comma-separated)",
     required: false
   param :golden,
     type: :boolean,
     desc: "If provided, will return only golden cards",
     required: false
-  param :created_at_gte,
+  param :created_after,
     type: :string,
-    desc: "If provided, will return only card created on or after after the given ISO timestamp",
+    desc: "If provided, will return only cards created on or after the given ISO timestamp",
     required: false
-  param :created_at_lte,
+  param :created_before,
     type: :string,
-    desc: "If provided, will return only card created on or before the given ISO timestamp",
+    desc: "If provided, will return only cards created on or before the given ISO timestamp",
     required: false
-  param :last_active_at_gte,
+  param :last_active_after,
     type: :string,
-    desc: "If provided, will return only card that were last active on or after after the given ISO timestamp",
+    desc: "If provided, will return only card that were last active on or after the given ISO timestamp",
     required: false
-  param :last_active_at_lte,
+  param :last_active_before,
     type: :string,
     desc: "If provided, will return only card that were last active on or before the given ISO timestamp",
     required: false
@@ -76,60 +76,33 @@ class Ai::Tool::ListCards < Ai::Tool
   end
 
   def execute(**params)
-    cards = Card.where(collection: user.collections).includes(:stage, :creator, :assignees, :goldness)
+    cards = Card
+      .where(collection: user.collections)
+      .with_rich_text_description
+      .includes(:stage, :creator, :assignees, :goldness, :collection)
 
+    cards = Filter.new(scope: cards, filters: params).filter
     cards = cards.search(params[:query]) if params[:query].present?
-    cards = cards.golden if params[:golden].present?
-    cards = cards.where(collection_id: params[:collection_id]) if params[:collection_id].present?
-    cards = cards.where(id: params[:ids]&.split(",")&.map(&:to_i)) if params[:ids].present?
 
-    if params[:last_active_at_gte].present?
-      timestamp = DateTime.parse(params[:last_active_at_gte])
-      cards = cards.where(last_active_at: timestamp..)
+    paginated_response(cards, page: params[:page], ordered_by: { created_at: :asc, id: :desc }) do |card|
+      card_attributes(card)
     end
-
-    if params[:last_active_at_lte].present?
-      timestamp = DateTime.parse(params[:last_active_at_lte])
-      cards = cards.where(last_active_at: ..timestamp)
-    end
-
-    if params[:created_at_gte].present?
-      timestamp = DateTime.parse(params[:created_at_gte])
-      cards = cards.where(created_at: timestamp..)
-    end
-
-    if params[:created_at_lte].present?
-      timestamp = DateTime.parse(params[:created_at_lte])
-      cards = cards.where(created_at: ..timestamp)
-    end
-
-    page = GearedPagination::Recordset.new(cards, ordered_by: { id: :desc }).page(params[:page])
-
-    puts "="*80
-    puts "Account: #{Account.sole.id}"
-    puts "Tenant: #{ApplicationRecord.current_tenant}"
-    puts "URL options: #{default_url_options.inspect}"
-    puts "="*80
-
-    {
-      cards: page.records.map do |card|
-        {
-          id: card.id,
-          title: card.title,
-          status: card.status,
-          last_active_at: card.last_active_at,
-          collection_id: card.collection_id,
-          golden: card.golden?,
-          stage: card.stage.as_json(only: [ :id, :name ]),
-          creator: card.creator.as_json(only: [ :id, :name ]),
-          assignees: card.assignees.as_json(only: [ :id, :name ]),
-          description: card.description.to_plain_text.truncate(1000),
-          url: collection_card_url(card.collection, card)
-        }
-      end,
-      pagination: {
-        next_page: page.next_param
-      }
-    }.to_json
   end
+
+  private
+    def card_attributes(card)
+      {
+        id: card.id,
+        title: card.title,
+        status: card.status,
+        last_active_at: card.last_active_at,
+        collection_id: card.collection_id,
+        golden: card.golden?,
+        stage: card.stage.as_json(only: [ :id, :name ]),
+        creator: card.creator.as_json(only: [ :id, :name ]),
+        assignees: card.assignees.as_json(only: [ :id, :name ]),
+        description: card.description.to_plain_text.truncate(1000),
+        url: collection_card_url(card.collection, card)
+      }
+    end
 end
