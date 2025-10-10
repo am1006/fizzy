@@ -70,6 +70,13 @@ USER rails:rails
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
+# Ruby GC tuning values pulled from Autotuner recommendations
+ENV RUBY_GC_HEAP_0_INIT_SLOTS=692636 \
+    RUBY_GC_HEAP_1_INIT_SLOTS=175943 \
+    RUBY_GC_HEAP_2_INIT_SLOTS=148807 \
+    RUBY_GC_HEAP_3_INIT_SLOTS=9169 \
+    RUBY_GC_HEAP_4_INIT_SLOTS=3054
+
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 80 443 9394
 CMD ["./bin/thrust", "./bin/rails", "server"]
