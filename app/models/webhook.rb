@@ -9,6 +9,8 @@ class Webhook < ApplicationRecord
   PERMITTED_ACTIONS = %w[
     card_assigned
     card_closed
+    card_postponed
+    card_auto_postponed
     card_collection_changed
     card_due_date_added
     card_due_date_changed

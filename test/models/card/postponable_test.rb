@@ -20,10 +20,29 @@ class Card::PostponableTest < ActiveSupport::TestCase
     card = cards(:text)
 
     assert_changes -> { card.reload.postponed? }, to: true do
-      card.postpone
+      assert_difference -> { card.events.count }, +1 do
+        card.postpone
+      end
     end
 
     assert_equal users(:david), card.not_now.user
+    assert card.events.last.action.card_postponed?
+
+    assert_changes -> { card.reload.postponed? }, to: false do
+      card.resume
+    end
+  end
+
+  test "auto_postpone a card" do
+    card = cards(:text)
+
+    assert_changes -> { card.reload.postponed? }, to: true do
+      assert_difference -> { card.events.count }, +1 do
+        card.auto_postpone
+      end
+    end
+
+    assert card.events.last.action.card_auto_postponed?
   end
 
   test "scopes" do

@@ -24,12 +24,17 @@ module Card::Postponable
     open? && published? && !postponed?
   end
 
-  def postpone(user: Current.user)
+  def auto_postpone(**args)
+    postpone(**args, event_name: :auto_postponed)
+  end
+
+  def postpone(user: Current.user, event_name: :postponed)
     transaction do
       send_back_to_triage
       reopen
       activity_spike&.destroy
       create_not_now!(user: user) unless postponed?
+      track_event event_name, creator: user
     end
   end
 
