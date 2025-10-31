@@ -586,6 +586,16 @@ columns:
   - *7
   - *8
   - *10
+  - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
+    auto_increment:
+    name: position
+    cast_type: *3
+    sql_type_metadata: *4
+    'null': false
+    default: 0
+    default_function:
+    collation:
+    comment:
   - *9
   comments:
   - *22
@@ -1954,6 +1964,23 @@ indexes:
     nulls_not_distinct:
     comment:
     valid: true
+  - !ruby/object:ActiveRecord::ConnectionAdapters::IndexDefinition
+    table: columns
+    name: index_columns_on_collection_id_and_position
+    unique: false
+    columns:
+    - collection_id
+    - position
+    lengths: {}
+    orders: {}
+    opclasses: {}
+    where:
+    type:
+    using:
+    include:
+    nulls_not_distinct:
+    comment:
+    valid: true
   comments:
   - !ruby/object:ActiveRecord::ConnectionAdapters::IndexDefinition
     table: comments
@@ -2852,4 +2879,4 @@ indexes:
     nulls_not_distinct:
     comment:
     valid: true
-version: 20251029104115
+version: 20251029161222
