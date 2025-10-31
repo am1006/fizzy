@@ -69,7 +69,8 @@ Rails.application.routes.draw do
       resource :reading
       resource :recover
       resource :watch
-      resource :collection, only: :update
+      resource :collection
+      resource :column
 
       resources :assignments
       resources :taggings

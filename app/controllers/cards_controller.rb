@@ -14,7 +14,7 @@ class CardsController < ApplicationController
   end
 
   def show
-    fresh_when etag: @card.cache_invalidation_parts.for_perma
+    fresh_when @card
   end
 
   def edit

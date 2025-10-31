@@ -11,6 +11,11 @@ class Account < ApplicationRecord
     end
   end
 
+  # This use the account as a generic card container. See +Entropy::Configuration+.
+  def cards
+    Card.all
+  end
+
   def slug
     "/#{tenant}"
   end

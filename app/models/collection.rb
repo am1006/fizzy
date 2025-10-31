@@ -1,11 +1,10 @@
 class Collection < ApplicationRecord
-  include AutoClosing, Accessible, Broadcastable, Entropic, Filterable, Publishable, Triageable
+  include AutoClosing, Accessible, Broadcastable, Cards, Entropic, Filterable, Publishable, Triageable
 
   belongs_to :creator, class_name: "User", default: -> { Current.user }
 
   has_rich_text :public_description
 
-  has_many :cards, dependent: :destroy
   has_many :tags, -> { distinct }, through: :cards
   has_many :events
   has_many :webhooks, dependent: :destroy
