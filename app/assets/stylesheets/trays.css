@@ -87,6 +87,10 @@
       display: none;
     }
 
+    .tray__toggle-text {
+      display: contents;
+    }
+
     @media (max-width: 799px) {
       /* When collapsed on mobile, make it small */
       .tray__dialog:not([open]) ~ & {

@@ -42,7 +42,7 @@
   <button class="tray__toggle" data-action="dialog#toggle keydown.n@document->hotkey#click" data-controller="hotkey" aria-label="Toggle notifications stack" aria-haspopup="true">
     <div class="tray__toggle-btn txt-uppercase btn btn--reversed txt-x-small center full-width">
       <%= icon_tag "bell" %>
-      <span class="tray__toggle-text flex align-center gap-half">Notifications <% if platform.desktop? -%><kbd>N</kbd><% end %></span>
+      <span class="tray__toggle-text">Notifications <% if platform.desktop? -%><kbd>N</kbd><% end %></span>
     </div>
   </button>
 </section>
