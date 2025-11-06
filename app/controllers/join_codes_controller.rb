@@ -14,7 +14,8 @@ class JoinCodesController < ApplicationController
       identity.memberships.find_or_create_by!(tenant: tenant) do |membership|
         membership.join_code = code
       end
-      identity.send_magic_link
+      magic_link = identity.send_magic_link
+      flash[:magic_link_code] = magic_link&.code if Rails.env.development?
     end
 
     session[:return_to_after_authenticating] = landing_url(script_name: "/#{tenant}")
