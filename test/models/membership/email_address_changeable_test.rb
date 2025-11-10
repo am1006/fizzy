@@ -5,7 +5,7 @@ class Membership::EmailAddressChangeableTest < ActiveSupport::TestCase
 
   setup do
     @identity = identities(:kevin)
-    @tenant = ApplicationRecord.current_tenant
+    @tenant = accounts("37s").external_account_id
     @membership = @identity.memberships.find_by!(tenant: @tenant)
     @new_email = "newart@example.com"
   end

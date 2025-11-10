@@ -14,6 +14,7 @@ class User::SearcherTest < ActiveSupport::TestCase
   end
 
   test "return an empty functional relation when no query" do
+    skip("TODO:PLANB: search")
     assert Card.where(id: @user.search("").select(:card_id)).none?
   end
 

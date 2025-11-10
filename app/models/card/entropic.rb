@@ -5,15 +5,15 @@ module Card::Entropic
     scope :due_to_be_postponed, -> do
       active
         .left_outer_joins(board: :entropy)
-        .where("last_active_at <= DATETIME('now', '-' || COALESCE(entropies.auto_postpone_period, ?) || ' seconds')",
+        .where("last_active_at <= DATE_SUB(NOW(), INTERVAL COALESCE(entropies.auto_postpone_period, ?) SECOND)",
           Current.account.entropy.auto_postpone_period)
     end
 
     scope :postponing_soon, -> do
       active
         .left_outer_joins(board: :entropy)
-        .where("last_active_at >  DATETIME('now', '-' || COALESCE(entropies.auto_postpone_period, ?) || ' seconds')", Current.account.entropy.auto_postpone_period)
-        .where("last_active_at <= DATETIME('now', '-' || CAST(COALESCE(entropies.auto_postpone_period, ?) * 0.75 AS INTEGER) || ' seconds')", Current.account.entropy.auto_postpone_period)
+        .where("last_active_at >  DATE_SUB(NOW(), INTERVAL COALESCE(entropies.auto_postpone_period, ?) SECOND)", Current.account.entropy.auto_postpone_period)
+        .where("last_active_at <= DATE_SUB(NOW(), INTERVAL CAST(COALESCE(entropies.auto_postpone_period, ?) * 0.75 AS SIGNED) SECOND)", Current.account.entropy.auto_postpone_period)
     end
 
     delegate :auto_postpone_period, to: :board

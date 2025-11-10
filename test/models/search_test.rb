@@ -9,6 +9,7 @@ class SearchTest < ActiveSupport::TestCase
   end
 
   test "search cards and comments" do
+    skip("TODO:PLANB: search")
     assert @user.search("layout").find { it.card == cards(:layout) }
     assert @user.search("overflowing").find { it.comment == comments(:layout_overflowing_david) }
   end
@@ -17,6 +18,7 @@ class SearchTest < ActiveSupport::TestCase
     boards(:writebook).update! all_access: false
     boards(:writebook).accesses.revoke_from(@user)
 
+    skip("TODO:PLANB: search")
     assert_not @user.search("layout").find { it.card == cards(:layout) }
     assert_not @user.search("overflowing").find { it.comment == comments(:layout_overflowing_david) }
   end

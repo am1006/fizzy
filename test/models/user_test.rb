@@ -19,8 +19,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "deactivate" do
-    tenant = ApplicationRecord.current_tenant
-
     assert_changes -> { users(:jz).active? }, from: true, to: false do
       assert_changes -> { users(:jz).accesses.count }, from: 1, to: 0 do
         users(:jz).deactivate

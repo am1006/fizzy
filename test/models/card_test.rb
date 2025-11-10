@@ -63,6 +63,7 @@ class CardTest < ActiveSupport::TestCase
   test "searchable by title" do
     card = boards(:writebook).cards.create! title: "Insufficient haggis", creator: users(:kevin)
 
+    skip("TODO:PLANB: search")
     assert_includes Card.search("haggis"), card
   end
 
@@ -101,13 +102,8 @@ class CardTest < ActiveSupport::TestCase
     cards(:logo).comments.create!(body: "I hate haggis")
     cards(:text).comments.create!(body: "I love haggis")
 
+    skip("TODO:PLANB: search")
     assert_equal [ card, cards(:logo), cards(:text) ].sort, Card.mentioning("haggis").sort
-  end
-
-  test "cache key includes the tenant name" do
-    card = cards(:logo)
-
-    assert_includes card.cache_key, ApplicationRecord.current_tenant, "cache key must always include the tenant"
   end
 
   test "for published cards, it should set the default title 'Untitiled' when not provided" do

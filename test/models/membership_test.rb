@@ -2,7 +2,7 @@ require "test_helper"
 
 class MembershipTest < ActiveSupport::TestCase
   test "change_email_address" do
-    tenant = ApplicationRecord.current_tenant
+    tenant = accounts("37s").external_account_id
     old_identity = identities(:kevin)
     new_email = "kevin.new@37signals.com"
 
