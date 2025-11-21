@@ -4,9 +4,6 @@ class Search::Record < ApplicationRecord
   belongs_to :searchable, polymorphic: true
   belongs_to :card
 
-  # Virtual attributes from search query
-  attribute :query, :string
-
   validates :account_id, :searchable_type, :searchable_id, :card_id, :board_id, :created_at, presence: true
 
   scope :for_query, ->(query:, user:) do
