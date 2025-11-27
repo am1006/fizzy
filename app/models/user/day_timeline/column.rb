@@ -17,6 +17,15 @@ class User::DayTimeline::Column
     safe_join(parts, " ")
   end
 
+  def base_title_for_route
+    case base_title
+    when "Done"
+      "closed"
+    else
+      base_title.downcase
+    end
+  end
+
   def events_by_hour
     limited_events.group_by { it.created_at.hour }
   end
