@@ -60,13 +60,18 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "create with invalid email address still redirects to prevent enumeration" do
-    untenanted do
-      assert_no_difference -> { Identity.count } do
-        post session_path, params: { email_address: "not-a-valid-email" }
-      end
+  test "create with invalid email address" do
+    # Avoid Sentry exceptions when attackers try to stuff invalid emails. The browser performs form
+    # field validation that should normally prevent this from occurring, so I'm not worried about
+    # returning proper validation errors.
+    without_action_dispatch_exception_handling do
+      untenanted do
+        assert_no_difference -> { Identity.count } do
+          post session_path, params: { email_address: "not-a-valid-email" }
+        end
 
-      assert_redirected_to session_magic_link_path
+        assert_redirected_to session_magic_link_path
+      end
     end
   end
 
