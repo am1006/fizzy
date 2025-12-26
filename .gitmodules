@@ -1,0 +1,3 @@
+[submodule "docs/guide"]
+	path = docs/guide
+	url = https://github.com/marckohlbrugge/unofficial-37signals-coding-style-guide.git

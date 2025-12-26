@@ -1,0 +1,30 @@
+[
+  {
+    "key": "ctrl+/",
+    "command": "editor.action.insertSnippet",
+    "when": "editorTextFocus && editorLangId == erb",
+    "args": {
+      "langId": "erb",
+      "name": "HTML comment"
+    }
+    // Alternatively, take a look at this plugin: https://github.com/TheZero0-ctrl/erb-commenter
+  },
+  {
+    "key": "cmd+shift+,",
+    "command": "editor.action.insertSnippet",
+    "when": "editorTextFocus && editorLangId == erb",
+    "args": {
+      "langId": "erb",
+      "name": "ERB Expression"
+    }
+  },
+  {
+    "key": "cmd+shift+.",
+    "command": "editor.action.insertSnippet",
+    "when": "editorTextFocus && editorLangId == erb",
+    "args": {
+      "langId": "erb",
+      "name": "ERB Insert"
+    }
+  }
+]

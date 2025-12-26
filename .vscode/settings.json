@@ -1,0 +1,80 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[ruby]": {
+    "editor.defaultFormatter": "Shopify.ruby-lsp",
+    "editor.tabSize": 2
+  },
+  "[erb]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "marcoroth.herb-lsp",
+    "editor.tabSize": 2
+  },
+  "rubyLsp.rubyVersionManager": {
+    "identifier": "mise"
+  },
+  "rubyLsp.enabledFeatures": {
+    "codeActions": true,
+    "diagnostics": true,
+    "documentHighlights": true,
+    "documentLink": true,
+    "documentSymbols": true,
+    "foldingRanges": true,
+    "formatting": true,
+    "hover": true,
+    "inlayHint": true,
+    "onTypeFormatting": true,
+    "selectionRanges": true,
+    "semanticHighlighting": true,
+    "completion": true,
+    "codeLens": true,
+    "definition": true,
+    "workspaceSymbol": true
+  },
+  "rubyLsp.featureFlags": {
+    "all": true
+  },
+  // "emmet.includeLanguages": {
+  //   "erb": "html"
+  // },
+  "files.associations": {
+    "*.jsx": "javascriptreact",
+    "*.json": "jsonc",
+    "*.erb": "erb",
+    "*.tt": "erb", // Thor template
+    "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  //
+  "editor.fontFamily": "DankMono Nerd Font",
+  "editor.fontSize": 16,
+  // use Mocha as the base
+  "workbench.colorTheme": "Catppuccin Frappé",
+  // we try to make semantic highlighting look good
+  "editor.semanticHighlighting.enabled": true,
+  // prevent VSCode from modifying the terminal colors
+  "terminal.integrated.minimumContrastRatio": 1,
+  // make the window's titlebar use the workbench colors
+  "window.titleBarStyle": "custom",
+  "explorer.sortOrder": "mixed",
+  "explorer.compactFolders": false,
+  "explorer.autoReveal": false,
+  "workbench.tree.enableStickyScroll": true
+}

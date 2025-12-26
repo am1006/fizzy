@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+export ANTHROPIC_FOUNDRY_RESOURCE=$(op read op://dev/AI/claude/ANTHROPIC_FOUNDRY_RESOURCE)
+export ANTHROPIC_FOUNDRY_API_KEY=$(op read op://dev/AI/claude/ANTHROPIC_FOUNDRY_API_KEY)
+claude "$@"
