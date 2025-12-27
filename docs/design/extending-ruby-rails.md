@@ -60,11 +60,13 @@ Dir["#{Rails.root}/lib/rails_ext/*"].each { |path| require "rails_ext/#{File.bas
 ### 2. `config/initializers/` - Application-Specific Extensions
 
 Initializers handle extensions that:
+
 - Need Rails to be fully loaded
 - Configure framework behavior
 - Integrate with multi-tenancy
 
 Key files:
+
 - `active_job.rb` - Job tenant context preservation
 - `uuid_primary_keys.rb` - UUID schema/type extensions
 - `table_definition_column_limits.rb` - MySQL-compatible column limits
@@ -125,6 +127,7 @@ end
 ```
 
 **Why this works well:**
+
 - `prepended do` block runs class-level configuration when the module is prepended
 - Each method calls `super` to preserve original behavior
 - `ActiveSupport.on_load` ensures the class exists before extending
@@ -269,15 +272,15 @@ end
 
 ## When to Use Each Pattern
 
-| Situation | Pattern | Example |
-|-----------|---------|---------|
-| Override existing method, call original | `prepend` with Concern | Active Job tenant context |
-| Add new methods to framework class | `include` with Concern | Replica support methods |
-| Add method to Ruby core class | Direct extension or `include` | `String#all_emoji?` |
-| Database-specific behavior | Conditional `prepend` | Date arithmetic |
-| Extend framework models with associations | `to_prepare` | Account on ActiveStorage |
-| Test-only modifications | `class_eval` | Mock behavior |
-| Fix framework bugs | `prepend` with comment | FTS5 schema dumper fix |
+| Situation                                 | Pattern                       | Example                   |
+| ----------------------------------------- | ----------------------------- | ------------------------- |
+| Override existing method, call original   | `prepend` with Concern        | Active Job tenant context |
+| Add new methods to framework class        | `include` with Concern        | Replica support methods   |
+| Add method to Ruby core class             | Direct extension or `include` | `String#all_emoji?`       |
+| Database-specific behavior                | Conditional `prepend`         | Date arithmetic           |
+| Extend framework models with associations | `to_prepare`                  | Account on ActiveStorage  |
+| Test-only modifications                   | `class_eval`                  | Mock behavior             |
+| Fix framework bugs                        | `prepend` with comment        | FTS5 schema dumper fix    |
 
 ---
 
@@ -572,6 +575,7 @@ end
 ### 1. Reopening Classes Without Modules
 
 **Bad:**
+
 ```ruby
 class ActiveRecord::Base
   def my_method
@@ -581,6 +585,7 @@ end
 ```
 
 **Good:**
+
 ```ruby
 module MyExtension
   def my_method
@@ -596,6 +601,7 @@ end
 ### 2. Overriding Without Calling Super
 
 **Bad:**
+
 ```ruby
 module BadExtension
   def serialize
@@ -605,6 +611,7 @@ end
 ```
 
 **Good:**
+
 ```ruby
 module GoodExtension
   def serialize
@@ -616,12 +623,14 @@ end
 ### 3. Extending Before Classes Exist
 
 **Bad:**
+
 ```ruby
 # In config/initializers/early.rb
 ActiveStorage::Blob.prepend MyExtension  # May not be loaded yet!
 ```
 
 **Good:**
+
 ```ruby
 ActiveSupport.on_load(:active_storage_blob) do
   prepend MyExtension
@@ -631,6 +640,7 @@ end
 ### 4. Using alias_method_chain (Deprecated)
 
 **Bad:**
+
 ```ruby
 module OldStyle
   def self.included(base)
@@ -644,6 +654,7 @@ end
 ```
 
 **Good:**
+
 ```ruby
 module ModernStyle
   def method
@@ -656,6 +667,7 @@ SomeClass.prepend ModernStyle
 ### 5. Scattered Extensions
 
 **Bad:**
+
 ```ruby
 # Random extensions in various files throughout the app
 # app/models/card.rb
@@ -667,6 +679,7 @@ end
 ```
 
 **Good:**
+
 ```ruby
 # Centralized in lib/rails_ext/string.rb
 class String
@@ -703,3 +716,7 @@ Key files demonstrating these patterns:
 - `/Users/leo/zDev/GitHub/fizzy/lib/rails_ext/active_record_date_arithmetic.rb` - Database adapter extensions
 - `/Users/leo/zDev/GitHub/fizzy/lib/rails_ext/active_storage_analyze_job_suppress_broadcasts.rb` - Bug workaround
 - `/Users/leo/zDev/GitHub/fizzy/config/initializers/tenanting/turbo.rb` - Turbo tenant awareness
+
+---
+
+Finally, not sure when to patch? Check out the [Gem Patching Timing](/docs/design/gem-patching-timing.md) guide.
