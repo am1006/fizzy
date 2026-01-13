@@ -5,7 +5,7 @@
       <%= button_to "Mark all as read", bulk_reading_path, class: "btn txt-small", form: { data: { turbo: false } }, data: { action: "badge#clear" } %>
     </div>
   <% else %>
-    <div class="notifications-list__empty-message blank-slate blank-slate--empty align-self-center">
+    <div class="notifications-list__blank-slate blank-slate align-self-center">
       Nothing new for you
     </div>
   <% end %>

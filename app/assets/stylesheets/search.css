@@ -71,7 +71,7 @@ summary {
     text-align: start;
   }
 
-  .search__empty {
+  .search__blank-slate {
     margin-block: 3em;
     margin-inline: auto;
     inline-size: fit-content;

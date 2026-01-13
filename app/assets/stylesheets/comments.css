@@ -4,7 +4,7 @@
     --comment-padding-block: var(--block-space-half);
     --comment-padding-inline: var(--inline-space-double);
     --comment-max: 70ch;
-    --reaction-size: 2rem;
+    --reaction-size: 2.25rem;
 
     display: flex;
     flex-direction: column;
@@ -109,6 +109,13 @@
     &:not:has(lexxy-editor) {
       padding-inline-end: var(--reaction-size);
     }
+
+    /* Add an empty space so the last line of text doesn't overlap with the reaction button */
+    .action-text-content > p:last-child::after {
+      content: "";
+      display: inline-block;
+      inline-size: var(--reaction-size);
+    }
   }
 
   .comment__content {
@@ -130,6 +137,10 @@
 
   .comment__edit {
     background-color: var(--color-ink-lightest);
+
+    &:hover {
+      z-index: 1;
+    }
   }
 
   .comment__permalink-title {

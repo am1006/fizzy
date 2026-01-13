@@ -30,7 +30,7 @@
     }
 
     &:has(.card--notification) {
-      .notifications-list__empty-message {
+      .notifications-list__blank-slate {
         display: none;
       }
     }

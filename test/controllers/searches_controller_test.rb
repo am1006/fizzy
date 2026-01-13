@@ -39,7 +39,7 @@ class SearchesControllerTest < ActionDispatch::IntegrationTest
     # Searching with non-existent card id
     get search_path(q: "999999", script_name: "/#{@account.external_account_id}")
     assert_select "form[data-controller='auto-submit']", count: 0
-    assert_select ".search__empty", text: "No matches"
+    assert_select ".search__blank-slate", text: "No matches"
   end
 
   test "search highlights matched terms with proper HTML marks" do

@@ -343,5 +343,9 @@
     grid-area: closure-message;
     margin-block-start: 0.5ch;
     padding-inline: 1ch;
+
+    form {
+      display: inline;
+    }
   }
 }

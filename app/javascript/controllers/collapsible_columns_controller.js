@@ -14,13 +14,12 @@ export default class extends Controller {
   }
 
   async connect() {
-    await this.#restoreColumnsDisablingTransitions()
-    this.#setupIntersectionObserver()
-
     this.mediaQuery = window.matchMedia(this.desktopBreakpointValue)
     this.handleDesktop = this.#handleDesktop.bind(this)
     this.mediaQuery.addEventListener("change", this.handleDesktop)
-    this.handleDesktop(this.mediaQuery)
+
+    await this.#restoreColumnsDisablingTransitions()
+    this.#setupIntersectionObserver()
   }
 
   disconnect() {
@@ -57,6 +56,7 @@ export default class extends Controller {
   async #restoreColumnsDisablingTransitions() {
     this.#disableTransitions()
     this.#restoreColumns()
+    this.#handleDesktop()
 
     await nextFrame()
     this.#enableTransitions()
