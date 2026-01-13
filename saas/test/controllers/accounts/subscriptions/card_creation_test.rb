@@ -10,7 +10,7 @@ class Account::Subscriptions::CardCreationTest < ActionDispatch::IntegrationTest
   test "admin sees nearing card limit notice" do
     accounts(:initech).update_column(:cards_count, 950)
 
-    get card_path(cards(:unfinished_thoughts), script_name: accounts(:initech).slug)
+    get card_draft_path(cards(:unfinished_thoughts), script_name: accounts(:initech).slug)
 
     assert_response :success
     assert_match /upgrade to unlimited/i, response.body
@@ -19,7 +19,7 @@ class Account::Subscriptions::CardCreationTest < ActionDispatch::IntegrationTest
   test "admin sees nearing storage limit notice" do
     Account.any_instance.stubs(:bytes_used).returns(600.megabytes)
 
-    get card_path(cards(:unfinished_thoughts), script_name: accounts(:initech).slug)
+    get card_draft_path(cards(:unfinished_thoughts), script_name: accounts(:initech).slug)
 
     assert_response :success
     assert_match /upgrade to get more/i, response.body
@@ -30,7 +30,7 @@ class Account::Subscriptions::CardCreationTest < ActionDispatch::IntegrationTest
   test "admin sees exceeding card limit notice" do
     accounts(:initech).update_column(:cards_count, 1001)
 
-    get card_path(cards(:unfinished_thoughts), script_name: accounts(:initech).slug)
+    get card_draft_path(cards(:unfinished_thoughts), script_name: accounts(:initech).slug)
 
     assert_response :success
     assert_match /you’ve used your.*free cards/i, response.body
@@ -39,7 +39,7 @@ class Account::Subscriptions::CardCreationTest < ActionDispatch::IntegrationTest
   test "admin sees exceeding storage limit notice" do
     Account.any_instance.stubs(:bytes_used).returns(1.1.gigabytes)
 
-    get card_path(cards(:unfinished_thoughts), script_name: accounts(:initech).slug)
+    get card_draft_path(cards(:unfinished_thoughts), script_name: accounts(:initech).slug)
 
     assert_response :success
     assert_match /you’ve run out of.*free storage/i, response.body
@@ -64,7 +64,7 @@ class Account::Subscriptions::CardCreationTest < ActionDispatch::IntegrationTest
   test "comped account under limits sees no notices" do
     accounts(:initech).comp
 
-    get card_path(cards(:unfinished_thoughts), script_name: accounts(:initech).slug)
+    get card_draft_path(cards(:unfinished_thoughts), script_name: accounts(:initech).slug)
 
     assert_response :success
     assert_no_match /upgrade/i, response.body

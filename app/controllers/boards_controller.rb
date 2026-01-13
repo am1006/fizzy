@@ -30,7 +30,7 @@ class BoardsController < ApplicationController
   end
 
   def edit
-    selected_user_ids = @board.users.pluck :id
+    selected_user_ids = @board.users.ids
     @selected_users, @unselected_users = \
       @board.account.users.active.alphabetically.includes(:identity).partition { |user| selected_user_ids.include? user.id }
   end

@@ -16,6 +16,14 @@ module ActionText
       def storage_tracked_record
         record.try(:storage_tracked_record)
       end
+
+      def accessible_to?(user)
+        record.try(:accessible_to?, user) || record.try(:publicly_accessible?)
+      end
+
+      def publicly_accessible?
+        record.try(:publicly_accessible?)
+      end
     end
   end
 end

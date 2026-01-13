@@ -10,7 +10,7 @@
     flex-wrap: wrap;
     gap: var(--inline-space-half);
     inline-size: 100%;
-    margin-block-start: calc(var(--block-space-half) / 2);
+    margin-block-start: var(--block-space-half);
     margin-inline: calc(var(--column-gap) / -1);
 
     &:has([open]) {
@@ -44,6 +44,7 @@
   }
 
   .reactions__trigger {
+    --btn-size: var(--reaction-size);
     --btn-border-color: var(--reaction-border-color);
 
     img {
@@ -115,10 +116,12 @@
 
   /* Make the avatar and delete buttons fit nicely within the reaction */
   .reaction__avatar,
+  .reaction__avatar .avatar,
   .reaction__form-label,
   .reaction form {
-    block-size: var(--btn-size);
+    block-size: 100%;
   }
+
 
   .reaction__delete {
     display: none;

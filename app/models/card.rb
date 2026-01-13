@@ -48,6 +48,10 @@ class Card < ApplicationRecord
 
   delegate :accessible_to?, to: :board
 
+  def publicly_accessible?
+    published? && board.publicly_accessible?
+  end
+
   def card
     self
   end

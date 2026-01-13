@@ -21,7 +21,7 @@ module Board::Storage
     end
 
     def card_ids
-      @card_ids ||= cards.pluck(:id)
+      @card_ids ||= cards.ids
     end
 
     def card_image_bytes
@@ -36,7 +36,7 @@ module Board::Storage
 
     def comment_embed_bytes
       card_ids.each_slice(BATCH_SIZE).sum do |batch|
-        sum_embed_bytes_for "Comment", Comment.where(card_id: batch).pluck(:id)
+        sum_embed_bytes_for "Comment", Comment.where(card_id: batch).ids
       end
     end
 
@@ -46,8 +46,7 @@ module Board::Storage
 
     def sum_embed_bytes_for(record_type, record_ids)
       rich_text_ids = ActionText::RichText \
-        .where(record_type: record_type, record_id: record_ids)
-        .pluck(:id)
+        .where(record_type: record_type, record_id: record_ids).ids
 
       sum_blob_bytes_in_batches \
         ActiveStorage::Attachment.where(record_type: "ActionText::RichText", name: "embeds"),

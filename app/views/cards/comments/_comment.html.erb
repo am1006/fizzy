@@ -14,7 +14,7 @@
               <%= link_to comment.creator.name, comment.creator, class: "txt-ink btn btn--plain fill-transparent", data: { turbo_frame: "_top" } %>
             </strong>
 
-            <%= link_to comment, class: "txt-undecorated txt-ink translucent txt-normal txt-capitalize", data: { turbo_frame: "_top" } do %>
+            <%= link_to comment, class: "comment__permalink-title", data: { turbo_frame: "_top" } do %>
               <%= local_datetime_tag comment.created_at, style: :agoorweekday %>,
               <%= local_datetime_tag comment.created_at, style: :time %>
             <% end %>

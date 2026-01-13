@@ -3,6 +3,7 @@ class CardsController < ApplicationController
 
   before_action :set_board, only: %i[ create ]
   before_action :set_card, only: %i[ show edit update destroy ]
+  before_action :redirect_if_drafted, only: :show
   before_action :ensure_permission_to_administer_card, only: %i[ destroy ]
 
   def index
@@ -12,8 +13,8 @@ class CardsController < ApplicationController
   def create
     respond_to do |format|
       format.html do
-        card = @board.cards.find_or_create_by!(creator: Current.user, status: "drafted")
-        redirect_to card
+        card = Current.user.draft_new_card_in(@board)
+        redirect_to card_draft_path(card)
       end
 
       format.json do
@@ -54,6 +55,10 @@ class CardsController < ApplicationController
 
     def set_card
       @card = Current.user.accessible_cards.find_by!(number: params[:id])
+    end
+
+    def redirect_if_drafted
+      redirect_to card_draft_path(@card) if @card.drafted?
     end
 
     def ensure_permission_to_administer_card

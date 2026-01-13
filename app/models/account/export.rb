@@ -37,6 +37,10 @@ class Account::Export < ApplicationRecord
     update!(status: :completed, completed_at: Time.current)
   end
 
+  def accessible_to?(accessor)
+    accessor == user
+  end
+
   private
     def generate_zip
       Tempfile.new([ "export", ".zip" ]).tap do |tempfile|

@@ -22,6 +22,11 @@ module User::Avatar
     avatar.variable? ? avatar.variant(:thumb) : avatar
   end
 
+  # Avatars are always publicly accessible
+  def publicly_accessible?
+    true
+  end
+
   private
     def avatar_content_type_allowed
       if !ALLOWED_AVATAR_CONTENT_TYPES.include?(avatar.content_type)

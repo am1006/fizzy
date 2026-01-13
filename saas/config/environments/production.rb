@@ -1,9 +1,8 @@
 Rails.application.configure do
   config.active_storage.service = :purestorage
 
-  # Enable structured logging, suppress unstructured log lines
+  # Enable structured logging
   config.structured_logging.logger = ActiveSupport::Logger.new(STDOUT)
-  config.log_level = :fatal
 
   config.action_controller.default_url_options = { host: "app.fizzy.do", protocol: "https" }
   config.action_mailer.default_url_options     = { host: "app.fizzy.do", protocol: "https" }

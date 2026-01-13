@@ -155,6 +155,10 @@
     max-inline-size: 100%;
     padding: var(--inline-space-half) var(--popup-item-padding-inline);
     text-align: start;
+    
+    &:focus-visible {
+      z-index: 1;
+    }
   }
 
   .popup__icon {

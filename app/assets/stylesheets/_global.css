@@ -10,7 +10,7 @@
   --block-space-double: calc(var(--block-space) * 2);
 
   /* Text */
-  --font-sans: "Adwaita Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-sans: "Adwaita Sans", -apple-system, BlinkMacSystemFont, "Segoe UI Variable Fizzy", "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   --font-serif: ui-serif, serif;
   --font-mono: ui-monospace, monospace;
 
@@ -74,12 +74,13 @@
   --z-events-column-header: 1;
   --z-events-day-header: 3;
   --z-popup: 10;
-  --z-nav: 30;
-  --z-flash: 40;
-  --z-tooltip: 50;
-  --z-bar: 60;
-  --z-tray: 61;
-  --z-welcome: 62;
+  --z-nav: 20;
+  --z-flash: 30;
+  --z-tooltip: 40;
+  --z-bar: 50;
+  --z-tray: 51;
+  --z-welcome: 52;
+  --z-nav-open: 100;
 
   /* OKLCH colors: Fixed */
   --lch-black: 0% 0 0;
@@ -206,7 +207,7 @@
   --color-terminal-text: var(--color-ink);
   --color-terminal-text-light: var(--color-ink-lighter);
   --color-golden: oklch(89.1% 0.178 95.7);
-  --color-considering: oklch(var(--lch-blue-medium));
+  --color-maybe: oklch(var(--lch-blue-medium));
 
   /* Colors: Cards */
   --color-card-default: oklch(var(--lch-blue-dark));

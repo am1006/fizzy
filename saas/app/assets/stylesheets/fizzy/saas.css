@@ -42,7 +42,7 @@
     box-shadow: 0 0 0.3em 0.2em var(--settings-subscription-color);
     color: var(--settings-subscription-text-color);
     margin-inline: auto;
-    padding: 0 0.3em 0 1.2em;
+    padding: 0.3em 0.3em 0.3em 1.2em;
     transform: rotate(-1deg);
 
     @media (max-width: 640px) {

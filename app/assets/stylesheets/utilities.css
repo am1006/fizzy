@@ -13,6 +13,7 @@
   .txt-align-start { text-align: start; }
   .txt-align-end { text-align: end; }
 
+  .txt-current { color: currentColor; }
   .txt-ink { color: var(--color-ink); }
   .txt-reversed { color: var(--color-ink-inverted); }
   .txt-negative { color: var(--color-negative); }
@@ -29,8 +30,9 @@
   .txt-capitalize-first-letter::first-letter { text-transform: capitalize; }
   .txt-link { color: var(--color-link); text-decoration: underline; }
 
-  .font-weight-black { font-weight: 900; }
   .font-weight-normal { font-weight: normal; }
+  .font-weight-bold { font-weight: bold; }
+  .font-weight-black { font-weight: 900; }
 
   /* Flexbox and Grid */
   .justify-end { justify-content: end; }
@@ -95,12 +97,6 @@
   .overflow-y { overflow-y: auto; scroll-snap-type: y mandatory; scroll-behavior: smooth; }
   .overflow-clip { text-overflow: clip; white-space: nowrap; overflow: hidden; }
   .overflow-ellipsis { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
-
-  .overflow-hide-scrollbar::-webkit-scrollbar {
-    @media (pointer: course) {
-      display: none;
-    }
-  }
 
   .overflow-line-clamp {
     -webkit-line-clamp: var(--lines, 2);

@@ -10,7 +10,7 @@ export default class extends Controller {
   }
 
   handleKeydown(event) {
-    if (this.#shouldIgnore(event)) return
+    if (this.#shouldIgnore(event) || this.#hasModifier(event)) return
 
     const handler = this.#keyHandlers[event.key.toLowerCase()]
     if (handler) {
@@ -35,6 +35,10 @@ export default class extends Controller {
            target.tagName === "TEXTAREA" ||
            target.isContentEditable ||
            target.closest("input, textarea, [contenteditable], lexxy-editor")
+  }
+
+  #hasModifier(event) {
+    return event.metaKey || event.ctrlKey || event.altKey || event.shiftKey
   }
 
   get #selectedCard() {
