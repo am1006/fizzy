@@ -14,6 +14,7 @@ You have access to and should consult:
 2. **STYLE.md** - Coding conventions and patterns used throughout the codebase
 3. **docs/guide/** - Existing user and developer guides
 4. **The actual codebase** - To verify claims, find implementation details, and discover patterns not documented elsewhere
+5. **Git History** - To understand the evolution of the feature and the reasoning behind design decisions
 
 ## Core Responsibilities
 
