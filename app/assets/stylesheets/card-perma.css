@@ -119,17 +119,6 @@
       }
     }
 
-    .board-picker__button {
-      --btn-border-size: 0;
-
-      font-size: 0.5em;
-      margin-inline-start: 1ch;
-
-      + .panel {
-        --panel-size: 18ch;
-      }
-    }
-
     .bubble {
       --bubble-number-max: 42px;
       --bubble-size: 6rem;
