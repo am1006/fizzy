@@ -281,10 +281,7 @@
 
     /* Overlap the card BG by half the button height */
     &:has(.btn) {
-      &,
-      ~ .card-perma__closure-message {
-        translate: 0 calc(-1 * var(--half-btn-height));
-      }
+      translate: 0 calc(-1 * var(--half-btn-height));
     }
 
     form {
@@ -295,12 +292,6 @@
     .btn:not(.popup__btn, .btn--plain, .btn--reversed, .settings-subscription__button) {
       --btn-background: var(--card-color);
       --btn-color: var(--color-ink-inverted);
-    }
-
-    .btn--plain {
-      --btn-color: var(--card-color);
-
-      text-decoration: underline;
     }
 
     .btn--reversed {
@@ -330,11 +321,25 @@
   .card-perma__closure-message {
     color: var(--card-color);
     grid-area: closure-message;
-    margin-block-start: 0.5ch;
+    margin-block: var(--block-space) var(--block-space-double);
     padding-inline: 1ch;
 
-    form {
-      display: inline;
+    .btn--plain {
+      --btn-color: var(--card-color);
+
+      text-decoration: underline;
+    }
+
+    @media (max-width: 799px) {
+      margin-block: var(--block-space-half);
+      translate: 0 calc(-0.5 * var(--half-btn-height));
+    }
+
+    @media (min-width: 800px) {
+      .card-perma__notch--bottom:has(.btn) ~ & {
+        margin-block: var(--block-space-half) var(--block-space);
+        translate: 0 calc(-0.5 * var(--half-btn-height));
+      }
     }
   }
 }

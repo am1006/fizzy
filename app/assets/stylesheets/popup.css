@@ -53,6 +53,10 @@
   .popup__title {
     font-weight: 800;
     white-space: nowrap;
+
+    &[tabindex="-1"]:focus-visible {
+      outline: unset;
+    }
   }
 
   /* Hide lists when all the items within are hidden */
