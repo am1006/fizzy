@@ -536,16 +536,33 @@
     /* Set lower limit for font size */
     font-size: clamp(0.6rem, 0.85cqi, 100px);
 
-    .card__comments {
-      --column-gap: 0.8ch;
+    .card__counts {
+      --gap: 0.5ch;
 
+      align-items: flex-end;
       display: flex;
-      margin-block-end: calc(var(--block-space) * -1.7);
-      margin-inline-end: calc(var(--card-padding-inline) * -0.5);
+      flex-shrink: 0;
+      gap: calc(2 * var(--gap));
+      margin-inline: auto calc(var(--card-padding-inline) * -0.5);
+      padding-inline-start: var(--gap);
+    }
 
-      .icon {
-        --icon-size: 1.6em;
+    .card__boosts,
+    .card__comments {
+      --icon-size: 1.6em;
 
+      align-items: center;
+      display: flex;
+      flex-shrink: 0;
+      font-weight: 600;
+      gap: var(--gap);
+
+      img {
+        block-size: var(--icon-size);
+        inline-size: var(--icon-size);
+      }
+
+      .icon--comment {
         color: var(--card-color);
       }
     }
@@ -584,11 +601,16 @@
       .local-time-value {
         font-weight: inherit;
       }
+
+      @media (max-width: 639px) {
+        inline-size: auto;
+      }
     }
 
     &:has(.card__background img:not([src=""])) {
       .card__content,
       .card__meta,
+      .card__boosts,
       .card__comments,
       .card__column-name:not(.card__column-name--current) {
         opacity: 0;
@@ -599,6 +621,7 @@
         &:hover {
           .card__content,
           .card__footer,
+          .card__boosts,
           .card__comments,
           .card__column-name:not(.card__column-name--current) {
             opacity: 1;

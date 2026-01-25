@@ -10,8 +10,6 @@
     flex-wrap: wrap;
     gap: var(--inline-space-half);
     inline-size: 100%;
-    margin-block-start: var(--block-space-half);
-    margin-inline: calc(var(--column-gap) / -1);
 
     &:has([open]) {
       z-index: var(--z-popup);
@@ -34,11 +32,8 @@
 
       .reactions__trigger {
         --btn-border-color: var(--color-ink-lightest);
-        background-color: var(--color-ink-lightest);
 
-        &:not(:hover) {
-          opacity: 0.66;
-        }
+        background-color: var(--color-ink-lightest);
       }
     }
   }

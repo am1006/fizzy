@@ -1,7 +1,6 @@
-class Cards::Comments::ReactionsController < ApplicationController
+class Cards::ReactionsController < ApplicationController
   include CardScoped
 
-  before_action :set_comment
   before_action :set_reactable
 
   with_options only: :destroy do
@@ -36,12 +35,8 @@ class Cards::Comments::ReactionsController < ApplicationController
   end
 
   private
-    def set_comment
-      @comment = @card.comments.find(params[:comment_id])
-    end
-
     def set_reactable
-      @reactable = @comment
+      @reactable = @card
     end
 
     def set_reaction

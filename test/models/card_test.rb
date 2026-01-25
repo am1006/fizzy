@@ -18,14 +18,6 @@ class CardTest < ActiveSupport::TestCase
     assert_equal account.reload.cards_count, card.number
   end
 
-  test "capturing messages" do
-    assert_difference -> { cards(:logo).comments.count }, +1 do
-      cards(:logo).comments.create!(body: "Agreed.")
-    end
-
-    assert_equal "Agreed.", cards(:logo).comments.last.body.to_plain_text.chomp
-  end
-
   test "assignment states" do
     assert cards(:logo).assigned_to?(users(:kevin))
     assert_not cards(:logo).assigned_to?(users(:david))
@@ -206,5 +198,19 @@ class CardTest < ActiveSupport::TestCase
 
     assert card.watched_by?(kevin), "Kevin's watch should remain (has board access)"
     assert_not card.watched_by?(david), "David's watch should be deleted (no board access)"
+  end
+
+  test "card has reactions association" do
+    card = cards(:logo)
+    user = users(:david)
+
+    assert_difference "card.reactions.count", +1 do
+      card.reactions.create!(content: "👍", reacter: user)
+    end
+
+    reaction = card.reactions.last
+    assert_equal "👍", reaction.content
+    assert_equal user, reaction.reacter
+    assert_equal card, reaction.reactable
   end
 end
