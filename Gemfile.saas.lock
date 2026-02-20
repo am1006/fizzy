@@ -1,17 +1,19 @@
 GIT
   remote: https://github.com/basecamp/audits1984
-  revision: c790eaec0716c8df56b3d0ab5bf5d75e3e1b0ed0
+  revision: 422b8ff25820c828b7cf09aff4923fd8cc2c6795
+  branch: flavorjones/coworker-api
   specs:
     audits1984 (0.1.7)
       console1984
       importmap-rails (>= 1.2.1)
+      jbuilder
       rinku
       rouge
       turbo-rails
 
 GIT
   remote: https://github.com/basecamp/console1984
-  revision: 02b1b9ee7fd7050174b6a98c2b43057553621dc4
+  revision: 23419ec8861e73f12ced75a3fc559d03f7be5854
   specs:
     console1984 (0.2.2)
       irb (~> 1.13)
@@ -21,9 +23,9 @@ GIT
 
 GIT
   remote: https://github.com/basecamp/lexxy
-  revision: 4f0fc4d5773bc6892de70f175440c259974c12a7
+  revision: 4bcf8d0213971560e90734493f8bd835addc3642
   specs:
-    lexxy (0.7.0.beta)
+    lexxy (0.7.4.beta)
       rails (>= 8.0.2)
 
 GIT
@@ -37,9 +39,9 @@ GIT
 
 GIT
   remote: https://github.com/basecamp/rails-structured-logging
-  revision: 76960cb5c15fc2b6b5f7542e05d7dcc031cef9e6
+  revision: f6633fd8fee5906d8affa2329c61de7a3450eb7e
   specs:
-    rails_structured_logging (0.2.1)
+    rails_structured_logging (0.3.0)
       json
       rails (>= 6.0.0)
 
@@ -60,7 +62,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 60d92e4e7dfe923528ccdccc18820ccfe841b7b8
+  revision: 12e24eaf2f0a9613e015653f013dd131317d9bf5
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -94,7 +96,7 @@ GIT
       rails-html-sanitizer (~> 1.6)
       useragent (~> 0.16)
     actiontext (8.2.0.alpha)
-      action_text-trix (~> 2.1.15)
+      action_text-trix (~> 2.1.16)
       actionpack (= 8.2.0.alpha)
       activerecord (= 8.2.0.alpha)
       activestorage (= 8.2.0.alpha)
@@ -160,6 +162,15 @@ GIT
       tsort (>= 0.2)
       zeitwerk (~> 2.6)
 
+GIT
+  remote: https://github.com/rails/web-console.git
+  revision: bdbb39114348b037a515b2ce75a47457b0e647d1
+  specs:
+    web-console (4.2.1)
+      actionview (>= 8.0.0)
+      bindex (>= 0.4.0)
+      railties (>= 8.0.0)
+
 PATH
   remote: saas
   specs:
@@ -186,6 +197,9 @@ GEM
   specs:
     action_text-trix (2.1.16)
       railties
+    actionpack-xml_parser (2.0.1)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     activemodel-serializers-xml (1.0.3)
       activemodel (>= 5.0.0.a)
       activesupport (>= 5.0.0.a)
@@ -225,9 +239,9 @@ GEM
     benchmark (0.5.0)
     bigdecimal (4.0.1)
     bindex (0.8.1)
-    bootsnap (1.21.1)
+    bootsnap (1.22.0)
       msgpack (~> 1.2)
-    brakeman (7.1.2)
+    brakeman (8.0.1)
       racc
     builder (3.3.0)
     bundler-audit (0.9.3)
@@ -263,7 +277,7 @@ GEM
     erubi (1.13.1)
     et-orbi (1.4.0)
       tzinfo
-    faker (3.5.3)
+    faker (3.6.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.17.2-aarch64-linux-gnu)
     ffi (1.17.2-aarch64-linux-musl)
@@ -280,6 +294,7 @@ GEM
       addressable (>= 2.5.0)
     globalid (1.3.0)
       activesupport (>= 6.1)
+    gvltools (0.4.0)
     hashdiff (1.2.1)
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
@@ -291,15 +306,16 @@ GEM
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.8.2)
-    irb (1.16.0)
+    irb (1.17.0)
       pp (>= 0.6.0)
+      prism (>= 1.3.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jbuilder (2.14.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
     jmespath (1.6.2)
-    json (2.18.0)
+    json (2.18.1)
     jwt (3.1.2)
       base64
     kamal (2.10.1)
@@ -354,7 +370,7 @@ GEM
     msgpack (1.8.0)
     net-http-persistent (4.0.8)
       connection_pool (>= 2.2.4, < 4)
-    net-imap (0.6.2)
+    net-imap (0.6.3)
       date
       net-protocol
     net-pop (0.1.2)
@@ -369,19 +385,19 @@ GEM
       net-protocol
     net-ssh (7.3.0)
     nio4r (2.7.5)
-    nokogiri (1.19.0-aarch64-linux-gnu)
+    nokogiri (1.19.1-aarch64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.19.0-aarch64-linux-musl)
+    nokogiri (1.19.1-aarch64-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.19.0-arm-linux-gnu)
+    nokogiri (1.19.1-arm-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.19.0-arm-linux-musl)
+    nokogiri (1.19.1-arm-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.19.0-arm64-darwin)
+    nokogiri (1.19.1-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.19.0-x86_64-linux-gnu)
+    nokogiri (1.19.1-x86_64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.19.0-x86_64-linux-musl)
+    nokogiri (1.19.1-x86_64-linux-musl)
       racc (~> 1.4)
     openssl (4.0.0)
     ostruct (0.6.3)
@@ -395,7 +411,7 @@ GEM
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
-    prism (1.8.0)
+    prism (1.9.0)
     prometheus-client-mmap (1.4.0)
       base64
       bigdecimal
@@ -438,7 +454,7 @@ GEM
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (3.2.4)
+    rack (3.2.5)
     rack-mini-profiler (4.0.1)
       rack (>= 1.2.0)
     rack-session (2.1.1)
@@ -460,11 +476,10 @@ GEM
     rake-compiler-dock (1.9.1)
     rb_sys (0.9.117)
       rake-compiler-dock (= 1.9.1)
-    rdoc (7.0.3)
+    rdoc (7.2.0)
       erb
       psych (>= 4.0.0)
       tsort
-    redcarpet (3.6.1)
     regexp_parser (2.11.3)
     reline (0.6.3)
       io-console (~> 0.5)
@@ -511,7 +526,7 @@ GEM
     ruby2_keywords (0.0.5)
     rubyzip (3.2.2)
     securerandom (0.4.1)
-    selenium-webdriver (4.39.0)
+    selenium-webdriver (4.40.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
@@ -556,6 +571,7 @@ GEM
       net-sftp (>= 2.1.2)
       net-ssh (>= 2.8.0)
       ostruct
+    stackprof (0.2.27)
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.2.0)
@@ -578,11 +594,6 @@ GEM
     unicode-emoji (4.1.0)
     uri (1.1.1)
     vcr (6.4.0)
-    web-console (4.2.1)
-      actionview (>= 6.0.0)
-      activemodel (>= 6.0.0)
-      bindex (>= 0.4.0)
-      railties (>= 6.0.0)
     web-push (3.1.0)
       jwt (~> 3.0)
       openssl (>= 3.0)
@@ -626,6 +637,7 @@ GEM
       railties
       yabeda (~> 0.8)
     zeitwerk (2.7.4)
+    zip_kit (6.3.4)
 
 PLATFORMS
   aarch64-linux
@@ -639,6 +651,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  actionpack-xml_parser
   activeresource
   audits1984!
   autotuner
@@ -654,6 +667,7 @@ DEPENDENCIES
   faker
   fizzy-saas!
   geared_pagination (~> 1.2)
+  gvltools
   image_processing (~> 1.14)
   importmap-rails
   jbuilder
@@ -672,11 +686,9 @@ DEPENDENCIES
   rack-mini-profiler
   rails!
   rails_structured_logging!
-  redcarpet
   rouge
   rqrcode
   rubocop-rails-omakase
-  rubyzip
   selenium-webdriver
   sentry-rails
   sentry-ruby
@@ -684,6 +696,7 @@ DEPENDENCIES
   solid_cache (~> 1.0)
   solid_queue (~> 1.2)
   sqlite3 (>= 2.0)
+  stackprof
   stimulus-rails
   stripe (~> 18.0)
   thruster
@@ -691,7 +704,7 @@ DEPENDENCIES
   turbo-rails
   useragent!
   vcr
-  web-console
+  web-console!
   web-push
   webmock
   webrick
@@ -703,6 +716,7 @@ DEPENDENCIES
   yabeda-prometheus-mmap
   yabeda-puma-plugin
   yabeda-rails
+  zip_kit
 
 BUNDLED WITH
    2.7.2

@@ -27,13 +27,13 @@
     &:where(.popup--align-left),
     &.orient-left {
       inset-inline: auto 0;
-      transform: translateX(0);
+      transform: translateX(var(--orient-offset, 0px));
     }
 
     &:where(.popup--align-right),
     &.orient-right {
       inset-inline: 0 auto;
-      transform: translateX(0);
+      transform: translateX(var(--orient-offset, 0px));
     }
 
     form {

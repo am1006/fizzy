@@ -26,7 +26,7 @@ export default class extends Controller {
       this.dialogTarget.showModal()
     } else {
       this.dialogTarget.show()
-      orient(this.dialogTarget)
+      orient({ target: this.dialogTarget, anchor: this.element })
     }
 
     this.loadLazyFrames()
@@ -46,7 +46,7 @@ export default class extends Controller {
     this.dialogTarget.close()
     this.dialogTarget.setAttribute("aria-hidden", "true")
     this.dialogTarget.blur()
-    orient(this.dialogTarget, false)
+    orient({ target: this.dialogTarget, reset: true })
     this.dispatch("close")
   }
 

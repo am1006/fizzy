@@ -15,6 +15,10 @@ class SearchesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "search" do
+    # Search query is blank
+    get search_path(q: "", script_name: "/#{@account.external_account_id}")
+    assert @query.nil?
+
     # Searching by card title
     get search_path(q: "broken", script_name: "/#{@account.external_account_id}")
     assert_select "li .search__title", text: /Layout is broken/
