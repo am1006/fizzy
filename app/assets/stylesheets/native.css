@@ -78,12 +78,31 @@
 
     .card-perma--draft {
       .card-perma__bg {
-        box-shadow: 0 calc(100vh + 100px) 0 100vh var(--color-container);
+        padding-inline: 0;
+        padding-block-start: 0;
+        background-color: unset;
+      }
+
+      .card {
+        background: linear-gradient(to bottom, var(--color-canvas), var(--card-bg-color));
+        box-shadow: 0 101vh 0 100vh var(--card-bg-color);
+      }
+
+      .card__board {
+        border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      }
+
+      .card-perma__notch--bottom {
+        z-index: 1;
       }
     }
 
     /* Search
     /* ------------------------------------------------------------------------ */
+
+    .search {
+      overscroll-behavior: auto;
+    }
 
     .search__title {
       text-decoration: none;

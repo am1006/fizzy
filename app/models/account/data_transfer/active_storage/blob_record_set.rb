@@ -1,9 +1,9 @@
-class Account::DataTransfer::ActiveStorageBlobRecordSet < Account::DataTransfer::RecordSet
+class Account::DataTransfer::ActiveStorage::BlobRecordSet < Account::DataTransfer::RecordSet
   def initialize(account)
     super(
       account: account,
-      model: ActiveStorage::Blob,
-      attributes: ActiveStorage::Blob.column_names - %w[service_name]
+      model: ::ActiveStorage::Blob,
+      attributes: ::ActiveStorage::Blob.column_names - %w[service_name]
     )
   end
 
@@ -13,7 +13,7 @@ class Account::DataTransfer::ActiveStorageBlobRecordSet < Account::DataTransfer:
         data = load(file)
         data.slice(*attributes).merge(
           "account_id" => account.id,
-          "service_name" => ActiveStorage::Blob.service.name
+          "service_name" => ::ActiveStorage::Blob.service.name
         )
       end
 

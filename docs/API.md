@@ -134,6 +134,48 @@ __Response:__
 
 Returns `204 No Content` on success.
 
+#### Create an access token via the API
+
+You can programmatically create a personal access token using either a session cookie or an existing Bearer token:
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -H "Cookie: session_token=eyJfcmFpbHMi..." \
+  -d '{"access_token": {"description": "Fizzy CLI", "permission": "write"}}' \
+  https://app.fizzy.do/1234567/my/access_tokens
+```
+
+Or with a Bearer token (must have `write` permission):
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -H "Authorization: Bearer put-your-access-token-here" \
+  -d '{"access_token": {"description": "Fizzy CLI", "permission": "write"}}' \
+  https://app.fizzy.do/1234567/my/access_tokens
+```
+
+The `permission` field accepts `read` or `write`.
+
+__Response:__
+
+```
+HTTP/1.1 201 Created
+```
+
+```json
+{
+  "token": "4f9Q6d2wXr8Kp1Ls0Vz3BnTa",
+  "description": "Fizzy CLI",
+  "permission": "write"
+}
+```
+
+Store the `token` value securely — it won't be retrievable again. Use it as a Bearer token for subsequent API requests.
+
 ## Caching
 
 Most endpoints return [ETag](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/ETag) and [Cache-Control](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control) headers. You can use these to avoid re-downloading unchanged data.
@@ -427,9 +469,12 @@ __Response:__
     "email_address": "david@example.com",
     "created_at": "2025-12-05T19:36:35.401Z",
     "url": "http://fizzy.localhost:3006/897362094/users/03f5v9zjw7pz8717a4no1h8a7"
-  }
+  },
+  "public_url": "http://fizzy.localhost:3006/897362094/public/boards/aB3dEfGhIjKlMnOp"
 }
 ```
+
+The `public_url` field is only present when the board is published.
 
 ### `POST /:account_slug/boards`
 
@@ -502,6 +547,50 @@ __Response:__
 
 Returns `204 No Content` on success.
 
+## Board Publications
+
+Publishing a board makes it publicly accessible via a shareable link, without requiring authentication. Only board administrators can publish or unpublish a board.
+
+### `POST /:account_slug/boards/:board_id/publication`
+
+Publishes a board, generating a shareable public link.
+
+__Response:__
+
+```
+HTTP/1.1 201 Created
+```
+
+```json
+{
+  "id": "03f5v9zkft4hj9qq0lsn9ohcm",
+  "name": "Fizzy",
+  "all_access": true,
+  "created_at": "2025-12-05T19:36:35.534Z",
+  "url": "http://fizzy.localhost:3006/897362094/boards/03f5v9zkft4hj9qq0lsn9ohcm",
+  "creator": {
+    "id": "03f5v9zjw7pz8717a4no1h8a7",
+    "name": "David Heinemeier Hansson",
+    "role": "owner",
+    "active": true,
+    "email_address": "david@example.com",
+    "created_at": "2025-12-05T19:36:35.401Z",
+    "url": "http://fizzy.localhost:3006/897362094/users/03f5v9zjw7pz8717a4no1h8a7"
+  },
+  "public_url": "http://fizzy.localhost:3006/897362094/public/boards/aB3dEfGhIjKlMnOp"
+}
+```
+
+If the board is already published, the existing publication is returned.
+
+### `DELETE /:account_slug/boards/:board_id/publication`
+
+Unpublishes a board, removing public access.
+
+__Response:__
+
+Returns `204 No Content` on success.
+
 ## Cards
 
 Cards are tasks or items of work on a board. They can be organized into columns, tagged, assigned to users, and have comments.
@@ -539,6 +628,7 @@ __Response:__
     "description": "Hello, World!",
     "description_html": "<div class=\"action-text-content\"><p>Hello, World!</p></div>",
     "image_url": null,
+    "has_attachments": false,
     "tags": ["programming"],
     "golden": false,
     "last_active_at": "2025-12-05T19:38:48.553Z",
@@ -590,6 +680,7 @@ __Response:__
   "description": "Hello, World!",
   "description_html": "<div class=\"action-text-content\"><p>Hello, World!</p></div>",
   "image_url": null,
+  "has_attachments": false,
   "tags": ["programming"],
   "closed": false,
   "golden": false,
@@ -747,7 +838,7 @@ Returns `204 No Content` on success.
 
 ### `POST /:account_slug/cards/:card_number/triage`
 
-Moves a card from triage into a column.
+Moves a card into a column.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
@@ -857,6 +948,7 @@ __Response:__
     "description": "Hello, World!",
     "description_html": "<div class=\"action-text-content\"><p>Hello, World!</p></div>",
     "image_url": null,
+    "has_attachments": false,
     "tags": ["programming"],
     "golden": false,
     "last_active_at": "2025-12-05T19:38:48.553Z",

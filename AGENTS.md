@@ -50,6 +50,14 @@ bin/jobs                     # Manage Solid Queue jobs
 bin/kamal deploy             # Deploy (requires 1Password CLI for secrets)
 ```
 
+## Deploy
+
+Default branch: `main`
+Pre-deploy: `bin/rails saas:enable`
+Deploy: `bin/kamal deploy -d <destination>`
+Destinations: production, staging, beta, beta1, beta2, beta3, beta4
+Note: `beta` is a template requiring `BETA_NUMBER` env var; typical targets are `beta1`-`beta4`.
+
 ## Architecture Overview
 
 ### Multi-Tenancy (URL-Based)
@@ -140,7 +148,7 @@ Key recurring tasks (via `config/recurring.yml`):
 ### Imports and exports
 
 Allow people to move between OSS and SAAS Fizzy instances:
-- Exports/Imports can be wirtten to/read from local or S3 storage depending on the config of the instance (both myst be supported)
+- Exports/Imports can be written to/read from local or S3 storage depending on the config of the instance (both must be supported)
 - Must be able to handle very large ZIP files (500+GB)
 - Models in `app/models/account/data_transfer/`, `app/models/zip_file`
 

@@ -232,8 +232,7 @@
   /* Settings
   /* ------------------------------------------------------------------------ */
 
-  .settings__user-filter .input,
-  .settings__user-list-tips {
+  .settings__user-filter .input {
     display: none;
   }
 

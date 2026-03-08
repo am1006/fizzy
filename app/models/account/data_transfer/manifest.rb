@@ -35,10 +35,10 @@ class Account::DataTransfer::Manifest
           ::Filter, ::Webhook::DelinquencyTracker, ::Event,
           ::Notification, ::Notification::Bundle, ::Webhook::Delivery
         ),
-        Account::DataTransfer::ActiveStorageBlobRecordSet.new(account),
+        Account::DataTransfer::ActiveStorage::BlobRecordSet.new(account),
         *build_record_sets(::ActiveStorage::Attachment),
-        Account::DataTransfer::ActionTextRichTextRecordSet.new(account),
-        Account::DataTransfer::BlobFileRecordSet.new(account)
+        Account::DataTransfer::ActionText::RichTextRecordSet.new(account),
+        Account::DataTransfer::ActiveStorage::FileRecordSet.new(account)
       ]
     end
 

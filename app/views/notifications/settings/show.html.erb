@@ -8,7 +8,7 @@
   <div class="settings__panel settings__panel--users panel shadow">
     <section class="settings__section">
       <h2 class="divider">Boards</h2>
-      <div class="settings__user-list flex flex-column gap-half">
+      <div class="settings__scrollable-list flex flex-column gap-half">
         <%= render partial: "notifications/settings/board", collection: @boards, locals: { user: Current.user } %>
       </div>
     </section>
@@ -16,6 +16,7 @@
 
   <div class="settings__panel panel shadow">
     <%= render "notifications/settings/push_notifications" %>
+    <%= render "notifications/settings/native_devices" if Fizzy.saas? %>
     <%= render "notifications/settings/email", settings: @settings %>
   </div>
 </section>

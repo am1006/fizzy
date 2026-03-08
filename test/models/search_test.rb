@@ -35,4 +35,11 @@ class SearchTest < ActiveSupport::TestCase
     results = Search::Record.for(user_without_access.account_id).search("anything", user: user_without_access)
     assert_empty results
   end
+
+  test "search for hyphenated strings" do
+    card = @board.cards.create!(title: "BC3-IOS-1D8B", creator: @user, status: "published")
+
+    results = Search::Record.for(@user.account_id).search("BC3-IOS-1D8B", user: @user)
+    assert results.find { |it| it.card_id == card.id }
+  end
 end

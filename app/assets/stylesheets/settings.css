@@ -3,13 +3,20 @@
     --settings-spacer: var(--block-space);
     --settings-item-padding-inline: 0.5ch;
 
-    display: grid;
+    align-items: start;
+    display: flex;
     gap: calc(var(--settings-spacer) * 2);
+    flex-direction: column;
+    justify-content: center;
     margin: 0 auto;
     max-inline-size: min(100ch, 100%);
 
     @media (min-width: 960px) {
-      grid-template-columns: repeat(2, 1fr);
+      flex-direction: row;
+
+      .settings__panel {
+        max-inline-size: 50%;
+      }
     }
   }
 
@@ -55,10 +62,7 @@
     }
   }
 
-  /* Users
-  /* ------------------------------------------------------------------------ */
-
-  .settings__section--users {
+  .settings__section:has(.settings__scrollable-list) {
     @media (min-width: 640px) {
       display: flex;
       flex: 1;
@@ -66,24 +70,8 @@
       min-height: 0;
     }
   }
-  .settings__user-filter {
-    --btn-size: 3.5ch;
-    --avatar-size: var(--btn-size);
 
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--settings-spacer) / 2);
-    min-height: 0;
-  }
-
-  .settings__user-filter--bg {
-    background-color: var(--color-ink-lightest);
-    border-radius: 0.5em;
-    margin-block: 0;
-    padding: var(--settings-spacer);
-  }
-
-  .settings__user-list {
+  .settings__scrollable-list {
     flex: 1 1 auto;
     list-style: none;
     margin: calc(var(--settings-spacer) / -4) calc(-1 * var(--settings-item-padding-inline));
@@ -116,15 +104,23 @@
     }
   }
 
-  .settings__user-list-tips {
-    border-top: 1px solid var(--color-ink-light);
-    color: var(--color-ink-dark);
-    font-size: var(--text-small);
-    padding-block-start: var(--settings-spacer);
+  /* Users
+  /* ------------------------------------------------------------------------ */
 
-    .settings__user-filter--bg & {
-      margin-inline: calc(-1 * var(--settings-spacer));
-      padding-inline: var(--settings-spacer);
-    }
+  .settings__user-filter {
+    --btn-size: 3.5ch;
+    --avatar-size: var(--btn-size);
+
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--settings-spacer) / 2);
+    min-height: 0;
+  }
+
+  .settings__user-filter--bg {
+    background-color: var(--color-ink-lightest);
+    border-radius: 0.5em;
+    margin-block: 0;
+    padding: var(--settings-spacer);
   }
 }

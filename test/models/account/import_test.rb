@@ -62,6 +62,36 @@ class Account::ImportTest < ActiveSupport::TestCase
     export_tempfile&.unlink
   end
 
+  test "import reconciles cards count so new cards get correct numbers" do
+    source_account = accounts("37s")
+    exporter = users(:david)
+    identity = exporter.identity
+    max_card_number = source_account.cards.maximum(:number)
+
+    export = Account::Export.create!(account: source_account, user: exporter)
+    export.build
+
+    export_tempfile = Tempfile.new([ "export", ".zip" ])
+    export.file.open { |f| FileUtils.cp(f.path, export_tempfile.path) }
+
+    source_account.destroy!
+
+    target_account = Account.create_with_owner(account: { name: "Import Test" }, owner: { identity: identity, name: exporter.name })
+    import = Account::Import.create!(identity: identity, account: target_account)
+    Current.set(account: target_account) do
+      import.file.attach(io: File.open(export_tempfile.path), filename: "export.zip", content_type: "application/zip")
+    end
+
+    import.check
+    import.process
+
+    target_account.reload
+    assert_operator target_account.cards_count, :>=, max_card_number
+  ensure
+    export_tempfile&.close
+    export_tempfile&.unlink
+  end
+
   test "check sets no failure_reason for unexpected errors" do
     import = Account::Import.create!(identity: identities(:david), account: Account.create!(name: "Import Test"))
 

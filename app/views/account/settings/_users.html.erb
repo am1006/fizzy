@@ -1,4 +1,4 @@
-<section class="settings__section settings__section--users">
+<section class="settings__section">
   <header>
     <h2 class="divider">People on this account</h2>
   </header>
@@ -13,7 +13,7 @@
     <div class="settings__user-filter">
       <input placeholder="Filter…" class="input input--transparent full-width txt-small" type="search" autocorrect="off" autocomplete="off" data-1p-ignore="true" data-filter-target="input" data-action="input->filter#filter">
 
-      <ul class="settings__user-list margin-block-half" data-filter-target="list" role="listbox">
+      <ul class="settings__scrollable-list margin-block-half" data-filter-target="list" role="listbox">
         <%= render partial: "account/settings/user", collection: users %>
       </ul>
     </div>
